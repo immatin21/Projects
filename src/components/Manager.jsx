@@ -244,7 +244,7 @@ const Manager = () => {
                       </td>
                       <td className="py-2 border border-white">
                         <div className="flex items-center justify-between mx-5">
-                          <span>{item.password}</span>
+                          <span>{"*".repeat(item.password.length)}</span>
                           <div
                             className="lordiconcopy size-7 cursor-pointer"
                             onClick={() => {
