@@ -151,13 +151,13 @@ const Manager = () => {
               name="username"
               id="username"
             />
-            <div className="relative md:w-sm w-full flex items-center">
+            <div className="relative md:w-sm w-full flex items-center ">
               <input
                 ref={passref}
-                className="rounded-full w-full border border-green-500 px-4 py-1 pr-10"
+                className="rounded-full w-full border border-green-500 pl-3 py-1 "
                 onChange={handleChange}
                 value={form.password}
-                placeholder="Enter Password"
+                placeholder="Password"
                 type="password"
                 name="password"
                 id="pass"
