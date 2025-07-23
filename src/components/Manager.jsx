@@ -140,9 +140,9 @@ const Manager = () => {
             name="site"
             id="site"
           />
-          <div className="flex gap-8 w-full">
+          <div className="flex md:gap-8 gap-5 w-full">
             <input
-              className="rounded-full w-full border border-green-500 p-4 py-1"
+              className="rounded-full w-full border border-green-500 px-3 py-1"
               value={form.username}
               onChange={handleChange}
               placeholder="Enter Username"
@@ -150,10 +150,10 @@ const Manager = () => {
               name="username"
               id="username"
             />
-            <div className="relative md:w-sm w-full flex items-center">
+            <div className="relative md:w-sm w-full flex justify-end items-center">
               <input
                 ref={passref}
-                className="rounded-full w-full border border-green-500 md:px-4 px-4 py-1 "
+                className="rounded-full w-full border border-green-500 md:px-4 pl-4 py-1 "
                 onChange={handleChange}
                 value={form.password}
                 placeholder="Enter Password"
@@ -161,7 +161,7 @@ const Manager = () => {
                 name="password"
                 id="pass"
               />
-              <span className="absolute right-2" onClick={showpassword}>
+              <span className="absolute pr-2" onClick={showpassword}>
                 <img ref={ref} width={25} src="./icons/eye.png" alt="" />
               </span>
             </div>
