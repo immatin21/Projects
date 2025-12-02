@@ -1,0 +1,7 @@
+<svg width="30px" height="30px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <title>play_circle_filled_white</title>
+    <g fill="none">
+        <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+        <polygon points="8,6 14,10 8,14" fill="#fff"/>
+    </g>
+</svg>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="utility.css" />
+  <link rel="stylesheet" href="media.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <div class="nav border">
+    <div class="mid-nav">
+      <span>
+        <img id="logo" src="logo.svg" alt="" srcset="" />
+      </span>
+      <div class="center-box">
+        <span id="circle">
+          <img id="home" src="home.svg" alt="" srcset="" />
+        </span>
+        <div class="input">
+          <a href="#"><img id="search" src="search.svg" alt="" srcset="" /></a>
+          <input id="input-search" type="text" placeholder="What do you want to play?" />
+          <img id="line" src="line.png" alt="" srcset="" />
+          <a href="#"><img id="playlist" src="playlist.svg" alt="" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra">
+      <a class="before" href="http://">Premium</a>
+      <a class="before" href="http://">Support</a>
+      <a class="before" href="http://">Download</a>
+      <img id="line" src="line.png" alt="" srcset="" />
+      <a id="after-first" href="http://">
+        <img id="download" src="download.svg" alt="" />
+        <h5>Install App</h5>
+      </a>
+      <a id="after-sec" href="http://">
+        <h5>Sign up</h5>
+      </a>
+      <button id="login" type="submit">Log  in</button>
+    </div>
+
+  </div>
+  <div class="container flex items-center">
+    <div class="left-box border">
+      <div class="header">
+        <span class="library">
+          <a href="http://"><img src="library.svg" alt="" srcset="" /> </a>
+          <span><a class="lib" href="http://">Your Library</a></span>
+        </span>
+        <span><img id="cross" src="cross.svg" alt="" /></span>
+      </div>
+
+        <div class="songList"> 
+          <ul>
+            
+          </ul>
+        </div>
+
+
+
+        <!-- <div class="section">
+          <div class="content">
+            <span id="first-line">Create your first playlist</span>
+            <span id="second-line">It's easy,we will help you</span>
+            <span><button class="play">Create playlist</button></span>
+          </div>
+        </div> -->
+        <!-- <div class="section">
+          <div class="content">
+            <span id="first-line">Let's find some podcast to follow</span>
+            <span id="second-line">We'll keep you updated on new episodes</span>
+            <span><button class="play">Browse podcasts</button></span>
+          </div>
+        </div> -->
+      <div class="footers">
+        <div class="footer-list">
+          <a href="http://">Legal</a>
+          <a href="http://">Safety&Privacy Center</a>
+          <a href="http://">Privacy Policy</a>
+          <a href="http://">Cookies</a>
+        </div>
+        <div class="footer-list">
+          <a href="http://">About Ads</a>
+          <a href="http://">Accessibility</a>
+        </div>
+        <div class="footer-list">
+          <a href="http://" style="color: white">Cookies</a>
+        </div>
+        <span style="padding-left: 20px; margin-top: 5px">
+          <button id="language">
+            <img id="lang" src="language.svg" />English
+          </button>
+        </span>
+      </div>
+    </div>
+    <div class="right-box border">
+      <div class="SpotifyPlaylist">
+        <div class="menu">
+          <img id="hamburger" src="hamburger.svg" alt="" srcset="">
+          <h2>Your Playlists</h2>
+        </div>
+        <div class="CardContainer">
+
+        </div>
+      </div>
+      <div class="Play-Bar">
+        <div class="seekbar">
+          <div class="circle">
+            
+          </div>
+        </div>
+        <div class="songInfo">
+
+          <div class="songName"></div>
+           <div class="SongButtons">
+              <img id="previous" src="previous.svg" alt="" srcset="">
+              <img id="play" src="play.svg" alt="" srcset="">
+              <img id="next" src="next.svg" alt="" srcset="">
+           </div>
+           <div class="timevolume">
+             <div class="songTime"></div>
+             <div class="volume">
+              <img id="vol" src="volume.svg" alt="" srcset="">
+              <div class="range">
+                <input style="cursor: pointer;" type="range" name="volume" id="">
+              </div>
+             </div>
+           </div>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

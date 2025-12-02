@@ -1,0 +1,8 @@
+<svg width="30px" height="30px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <title>pause_circle_filled_white</title>
+    <g fill="none">
+        <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+        <rect x="7" y="6" width="2" height="8" fill="#fff"/>
+        <rect x="11" y="6" width="2" height="8" fill="#fff"/>
+    </g>
+</svg>
