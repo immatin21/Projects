@@ -27,7 +27,8 @@ const syncUserCreation = inngest.createFunction(
             username
         }
 
-        await User.create(userData)
+        let person = await User.create(userData)
+        console.log("User created in DB from Clerk", person)
     }
 )
 
@@ -37,6 +38,7 @@ const syncUserUpdation = inngest.createFunction(
     {id : 'update-user-from-clerk'},
     {event : 'clerk/user.updated'},
     async ({event})=>{
+
         const {id,first_name,last_name,email_addresses,image_url} = event.data;
 
         const updatedUserData = {

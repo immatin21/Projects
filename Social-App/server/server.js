@@ -1,6 +1,6 @@
+import dotenv from 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv/config';
 import connectDB from './configs/db.js';
 import { serve } from 'inngest/express';
 import {inngest, functions} from './inngest/index.js';
@@ -17,7 +17,7 @@ app.use(cors())
 app.use(clerkMiddleware());
 
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 4000
 
 app.get('/', (req, res) => {
   res.send('Server is running!')
