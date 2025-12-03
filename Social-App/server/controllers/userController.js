@@ -20,12 +20,13 @@ export const getUserData = async (req, res) => {
 // Update user data
 export const updateUserData = async (req, res) => {
   try {
-    const userId = req.auth();
+    const {userId} = req.auth();
 
-    const { username, bio, loacation, full_name } = req.body;
+    let { username, bio, location, full_name } = req.body;
 
-    const tempUser =
-      User.findById(userId)(!username) && (username = tempUser.username);
+    const tempUser = await User.findById(userId);
+
+    !username && (username = tempUser.username);
 
     if (tempUser.username !== username) {
       const user = await User.findOne({ username });
@@ -38,7 +39,7 @@ export const updateUserData = async (req, res) => {
     const updatedData = {
       username,
       bio,
-      loacation,
+      location,
       full_name,
     };
 
@@ -82,7 +83,7 @@ export const updateUserData = async (req, res) => {
         ],
       });
 
-      updatedData.cover_photo = url;
+      updatedData.cover_picture = url;
     }
 
     const user = await User.findByIdAndUpdate(userId, updatedData, {
