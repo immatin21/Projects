@@ -1,5 +1,6 @@
-import { Inngest } from "inngest";
+import { Inngest, step } from "inngest";
 import User from "../models/User.js";
+import Connection from "../models/Connection.js";
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "pingup-app" });
 
@@ -63,10 +64,30 @@ const syncUserDeletion = inngest.createFunction(
     }
 )
 
+// Create inngest functions to send connection request emails
+
+const sendConnectionRequestReminder = inngest.createFunction(
+    {id : 'send-new-connection-request-reminder'},
+    {event : 'app/connection-request'},
+
+    async({event,step})=>{
+        const {connectionId} = event.data;
+
+        await step.run('send-connection-request-email',async()=>{
+        const connection = await Connection.findById(connectionId).populate('to_user_id from_user_id');
+        
+        const subject = `👋 New Connection Request`;
+        
+        
+    })
+}
+)
+
 // Create an empty array where we'll export future Inngest functions
 export const functions = [
     syncUserCreation,
     syncUserUpdation,
-    syncUserDeletion
+    syncUserDeletion,
+    sendConnectionRequestReminder
 ];
 
