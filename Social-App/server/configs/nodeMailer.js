@@ -11,4 +11,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Continue from 07:50:00
+const sendEmail = async (to , subject , body) =>{
+  const response = await transporter.sendMail({
+    from: "",
+    to,
+    subject,
+    html: body,
+  })
+  return response
+}
+
+export default sendEmail;
