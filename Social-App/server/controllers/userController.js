@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import imagekit from "../configs/imageKit.js";
 import fs from "fs";
 import Connection from "../models/Connection.js";
+import Post from "../models/Post.js";
 // Get user data  using UserID from Clerk
 export const getUserData = async (req, res) => {
   try {
@@ -199,10 +200,18 @@ export const sendConnectionRequest = async (req,res) => {
     })
 
     if(!connection){
-      await Connection.create({
+      const newConnection = await Connection.create({
         from_user_id : userId,
         to_user_id : id
       })
+
+      // Trigger an event of reminder email after 24 hours if connection request is not accepted 
+
+      await inngest.send({
+        name: "app/connection-request",
+        data: { connectionId: newConnection._id }
+      });
+
       return res.json({success : true, message : "Connection request sent successfully"})
     }
     else if(connection && connection.status === 'Accepted'){
@@ -263,6 +272,27 @@ export const acceptConnectionRequest = async (req,res) => {
 
   } catch (error) {
       console.log(error);
+      res.json({ success: false, message: error.message });
+  }
+}
+
+// Get User Profile 
+
+export const getUserProfiles = async (req,res) => {
+  try {
+    const {profileId} = req.body
+    const profileUser = await User.findById(profileId)
+
+    if(!profileUser){
+      return res.json({success : false, message : "User not found"})
+    }
+
+    const posts = await Post.find({user : profileId}).populate('user')
+
+    res.json({success:true, profileUser, posts})
+
+  } catch (error) {
+    console.log(error);
       res.json({ success: false, message: error.message });
   }
 }
