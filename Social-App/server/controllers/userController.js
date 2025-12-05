@@ -1,8 +1,7 @@
 import User from "../models/User.js";
 import imagekit from "../configs/imageKit.js";
 import fs from "fs";
-import Connection from "../models/connection.js";
-
+import Connection from "../models/Connection.js";
 // Get user data  using UserID from Clerk
 export const getUserData = async (req, res) => {
   try {
