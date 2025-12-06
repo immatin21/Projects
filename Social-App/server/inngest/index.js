@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import Connection from "../models/Connection.js";
 import sendEmail from "../configs/nodeMailer.js";
 import Story from "../models/Story.js";
+import Message from "../models/Message.js";
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "pingup-app" });
 
@@ -167,10 +168,14 @@ const sendConnectionRequestReminder = inngest.createFunction(
               <div class="user-chip">
                 <div class="avatar">
                      ${
-                        connection.from_user_id.profile_picture
+                       connection.from_user_id.profile_picture
                          ? `<img src="${connection.from_user_id.profile_picture}" alt="${connection.from_user_id.full_name}" style="width:32px; height:32px; border-radius:999px; object-fit:cover;" />`
-                         : connection.from_user_id.full_name.split(" ").map((word) => word[0]).join("").toUpperCase()
-              }
+                         : connection.from_user_id.full_name
+                             .split(" ")
+                             .map((word) => word[0])
+                             .join("")
+                             .toUpperCase()
+                     }
                 </div>
 
                 <div>
@@ -206,23 +211,25 @@ const sendConnectionRequestReminder = inngest.createFunction(
       const body = html_for_request;
 
       await sendEmail({
-        to : connection.to_user_id.email,
+        to: connection.to_user_id.email,
         subject,
-        body
-      })
+        body,
+      });
     });
 
     const in24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000);
     await step.sleepUntil("wait-for-24-hours", in24Hours);
     await step.run("send-connection-request-reminder", async () => {
-        const connection = await Connection.findById(connectionId).populate("from_user_id to_user_id");
+      const connection = await Connection.findById(connectionId).populate(
+        "from_user_id to_user_id"
+      );
 
-        if(connection.status === 'accepted'){
-            return {message : "Connection request already accepted"}
-        }
-        const subject = `⏰ Reminder: Pending Connection Request`;
+      if (connection.status === "accepted") {
+        return { message: "Connection request already accepted" };
+      }
+      const subject = `⏰ Reminder: Pending Connection Request`;
 
-        const html_for_reminder = `
+      const html_for_reminder = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,11 +308,17 @@ const sendConnectionRequestReminder = inngest.createFunction(
         ${
           connection.from_user_id.profile_picture
             ? `<img src="${connection.from_user_id.profile_picture}" style="width:40px;height:40px;object-fit:cover;" />`
-            : connection.from_user_id.full_name.split(" ").map(w => w[0]).join("").toUpperCase()
+            : connection.from_user_id.full_name
+                .split(" ")
+                .map((w) => w[0])
+                .join("")
+                .toUpperCase()
         }
         </div>
         <div>
-          <div style="font-weight:600;">${connection.from_user_id.full_name}</div>
+          <div style="font-weight:600;">${
+            connection.from_user_id.full_name
+          }</div>
           <div style="font-size:12px; color:#6b7280;">
             is waiting for your response
           </div>
@@ -337,14 +350,14 @@ const sendConnectionRequestReminder = inngest.createFunction(
 </body>
 </html>
 `;
-        const body = html_for_reminder;
+      const body = html_for_reminder;
 
-        await sendEmail({
-          to : connection.to_user_id.email,
-          subject,
-          body
-        })
-    })
+      await sendEmail({
+        to: connection.to_user_id.email,
+        subject,
+        body,
+      });
+    });
 
     return { message: "Connection request reminder sent." };
   }
@@ -353,19 +366,234 @@ const sendConnectionRequestReminder = inngest.createFunction(
 // Inngest function to delete story after 24 hours of creation
 
 const deleteStory = inngest.createFunction(
-  {id : "story-delete"},
-  {event : "app/story.delete"},
+  { id: "story-delete" },
+  { event: "app/story.delete" },
 
-  async ({event, step}) => {
-    const {storyId} = event.data;
-    const in24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000)
+  async ({ event, step }) => {
+    const { storyId } = event.data;
+    const in24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000);
     await step.sleepUntil("wait-for-24-hours", in24Hours);
-    await step.run("delete-story", async ()=> {
+    await step.run("delete-story", async () => {
       await Story.findByIdAndDelete(storyId);
-      return {message : "Story deleted."}
-    })
+      return { message: "Story deleted." };
+    });
   }
-)
+);
+
+// Send Notification of unseen messages
+
+const sendUnseenMessagesNotification = inngest.createFunction(
+  { id: "send-unseen-messages-notification" },
+  { cron: "TZ=America/New_York 0 8 * * *" }, // Every day at 8 AM
+  async ({ step }) => {
+    const messages = await Message.find({ seen: false }).populate("to_user_id");
+    let unseenCount = {};
+
+    messages.map((msg) => {
+      unseenCount[msg.to_user_id._id] =
+        (unseenCount[msg.to_user_id._id] || 0) + 1;
+    });
+
+    for (const userId in unseenCount) {
+      const user = await User.findById(userId);
+
+      const subject = `📬 You have ${unseenCount[userId]} unseen messages`;
+
+      const html = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="UTF-8" />
+              <title>You have unread messages</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <style>
+                body {
+                  margin: 0;
+                  padding: 0;
+                  background-color: #f4f4f7;
+                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                  color: #111827;
+                }
+                .wrapper { padding: 24px 0; }
+                .container {
+                  max-width: 520px;
+                  margin: 0 auto;
+                  background: #ffffff;
+                  border-radius: 16px;
+                  padding: 24px;
+                  box-shadow: 0 18px 35px rgba(15,23,42,0.08);
+                  border: 1px solid #e5e7eb;
+                }
+                .logo {
+                  text-align: center;
+                  margin-bottom: 16px;
+                  font-size: 24px;
+                  font-weight: 700;
+                  color: #4f46e5;
+                }
+                .logo span { color: #111827; font-weight: 600; }
+                .badge {
+                  display: inline-block;
+                  padding: 4px 10px;
+                  border-radius: 999px;
+                  font-size: 11px;
+                  background-color: #eef2ff;
+                  color: #4f46e5;
+                  margin-bottom: 12px;
+                  text-transform: uppercase;
+                  letter-spacing: 0.08em;
+                  font-weight: 600;
+                }
+                h1 { font-size: 20px; margin: 0 0 12px; }
+                p { margin: 8px 0; line-height: 1.6; font-size: 14px; color: #4b5563; }
+                .messages-box {
+                  margin: 18px 0;
+                  padding: 14px 14px 8px;
+                  border-radius: 14px;
+                  background: #f9fafb;
+                  border: 1px solid #e5e7eb;
+                }
+                .message-item {
+                  padding: 8px 0;
+                  border-bottom: 1px solid #e5e7eb;
+                  font-size: 13px;
+                }
+                .message-item:last-child {
+                  border-bottom: none;
+                }
+                .sender {
+                  font-weight: 600;
+                  font-size: 13px;
+                  color: #111827;
+                }
+                .preview {
+                  font-size: 12px;
+                  color: #6b7280;
+                  margin-top: 2px;
+                }
+                .button-wrapper { text-align: center; margin: 22px 0 16px; }
+                .btn-primary {
+                  display: inline-block;
+                  padding: 10px 26px;
+                  border-radius: 999px;
+                  background: linear-gradient(135deg, #4f46e5, #6366f1);
+                  color: #ffffff !important;
+                  text-decoration: none;
+                  font-size: 14px;
+                  font-weight: 600;
+                  text-transform: uppercase;
+                  letter-spacing: 0.04em;
+                }
+                .meta { font-size: 12px; color: #9ca3af; margin-top: 4px; text-align:center; }
+                .footer {
+                  text-align: center;
+                  font-size: 11px;
+                  color:#9ca3af;
+                  margin-top: 16px;
+                }
+                .footer a {
+                  color:#6b7280;
+                  text-decoration: underline;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="wrapper">
+                <div class="container">
+                  <div class="logo">Ping<span>Up</span></div>
+
+                  <div style="text-align:center;">
+                    <div class="badge">New messages</div>
+                  </div>
+
+                  <h1>Hi ${user.full_name},</h1>
+
+                  <p>
+                    You have <strong>${unreadCount} unread message${
+                    unreadCount === 1 ? "" : "s"
+                  }</strong> waiting for you on PingUp.
+                  </p>
+
+                  ${
+                    unreadMessages && unreadMessages.length
+                      ? `
+                  <div class="messages-box">
+                    ${unreadMessages
+                      .slice(0, 3)
+                      .map(
+                        (msg) => `
+                      <div class="message-item">
+                        <div class="sender">
+                          ${msg.from_user_id?.full_name || "Someone"} ${
+                          msg.from_user_id?.username
+                            ? `(@${msg.from_user_id.username})`
+                            : ""
+                        }
+                        </div>
+                        <div class="preview">
+                          ${
+                            msg.text
+                              ? msg.text.length > 80
+                                ? msg.text.slice(0, 77) + "..."
+                                : msg.text
+                              : msg.image
+                              ? "📷 Image message"
+                              : "New message"
+                          }
+                        </div>
+                      </div>
+                    `
+                      )
+                      .join("")}
+                    ${
+                      unreadMessages.length > 3
+                        ? `<div class="meta" style="margin-top:8px;">+ ${
+                            unreadMessages.length - 3
+                          } more unread message${
+                            unreadMessages.length - 3 === 1 ? "" : "s"
+                          }</div>`
+                        : ""
+                    }
+                  </div>
+                  `
+                      : ""
+                  }
+
+                  <div class="button-wrapper">
+                    <a href="${process.env.FRONTEND_URL}/messages" class="btn-primary">
+                      Open inbox
+                    </a>
+                  </div>
+
+                  <p class="meta">
+                    This link will take you directly to your conversations.
+                  </p>
+
+                  <p style="margin-top:18px;">
+                    Best regards,<br />
+                    <strong>PingUp - Stay Connected</strong>
+                  </p>
+
+                  <div class="footer">
+                    You’re receiving this email because you have a PingUp account with message notifications enabled.<br />
+                    Need help? <a href="mailto:support@pingup.app">Contact support</a>.
+                  </div>
+                </div>
+              </div>
+            </body>
+            </html>`
+
+      const body = html;
+
+      await sendEmail({
+        to : user.email,
+        subject,
+        body
+      })
+    }
+    return { message: "Unseen messages notifications sent." };
+  }
+);
 
 // Create an empty array where we'll export future Inngest functions
 export const functions = [
@@ -373,5 +601,6 @@ export const functions = [
   syncUserUpdation,
   syncUserDeletion,
   sendConnectionRequestReminder,
-  deleteStory
+  deleteStory,
+  sendUnseenMessagesNotification
 ];
