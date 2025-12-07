@@ -2,6 +2,8 @@ import React from "react";
 import { ArrowLeft, Sparkle, TextIcon, Upload, UploadIcon } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useAuth } from "@clerk/clerk-react";
+import api from "../api/axios";
 
 const StoryModal = ({ setShowModal, fetchStories }) => {
   const bgColors = [
@@ -18,16 +20,80 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
   const [text, setText] = useState("");
   const [media, setMedia] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
+  const {getToken} = useAuth()
+
+  const MAX_VIDEO_DURATION = 60 // seconds
+  const MAX_VIDEO_FILE_SIZE = 50 // MB
 
   const handleMediaUpload = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      setMedia(file);
-      setPreviewURL(URL.createObjectURL(file));
+      if(file.type.startsWith('video')){
+        if (file.size > MAX_VIDEO_FILE_SIZE * 1024 * 1024){
+          toast.error(`Video file size cannot exceed ${MAX_VIDEO_FILE_SIZE} MB.`)
+          setMedia(null)
+          setPreviewURL(null)
+          return
+        }
+        const video = document.createElement('video')
+        video.preload = "metadata"
+        video.onloadedmetadata = ()=>{
+          window.URL.revokeObjectURL(video)
+          if(video.duration > MAX_VIDEO_DURATION){
+            toast.error(`Video duration cannot exceed ${MAX_VIDEO_DURATION} seconds.`)
+            setMedia(null)
+            setPreviewURL(null)
+          }
+          else {
+              setMedia(file)
+              setPreviewURL(URL.createObjectURL(file))
+              setText('')
+              setMode('media')
+            }
+          }
+          video.src = URL.createObjectURL(file)    
+        }else if(file.type.startsWith('image')){
+          setMedia(file)
+          setPreviewURL(URL.createObjectURL(file))
+          setText('')
+          setMode('media')
+      }
     }
   };
 
   const handleCreateStory = async () => {
+
+    const media_type = mode === 'media' ? media?.type.startsWith('image') ? 'image' : 'video'  : 'text'
+
+    if(media_type === text && !text){
+      throw new Error("Please enter some text!")
+    }
+
+    let formData = new FormData()
+      formData.append('content',text)
+      formData.append('media_type',media_type)
+      formData.append('media',media)
+      formData.append('background_colour', background)
+    
+    const token = await getToken()
+    
+    try {
+      const {data} = await api.post('/api/story/add', formData , {
+        headers : {Authorization : `Bearer ${token}`}
+      })
+  
+      if(data.success){
+        setShowModal(false)
+        toast.success("Story Created Successfully")
+        fetchStories()
+      }
+      else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+        toast.error(error.message)
+
+    }
 
 
   };
@@ -106,10 +172,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
             }`}
           >
             <input
-              onChange={(e) => {
-                handleMediaUpload(e);
-                setMode("media");
-              }}
+              onChange={handleMediaUpload}
               type="file"
               accept="image/*,video/*"
               className="hidden"
@@ -120,9 +183,7 @@ const StoryModal = ({ setShowModal, fetchStories }) => {
         {/* Create Story Button */}
         <button
           onClick={() => toast.promise(handleCreateStory(), {
-            loading : 'Creating Story...',
-            success : <p>Story Created!</p>,
-            error : e=> <p>Error: ${e.message}</p>,
+            loading : 'Creating Story...'
           })}
           className="flex items-center justify-center gap-2 py-3 mt-4 w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded hover:from-indigo-700 hover:to-purple-700 transition cursor-pointer active:scale-95"
         >

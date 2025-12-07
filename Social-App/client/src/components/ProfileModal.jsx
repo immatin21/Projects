@@ -2,8 +2,16 @@ import React from "react";
 import { dummyUserData } from "../assets/assets";
 import { useState } from "react";
 import { Cross, CrossIcon, Pencil, PenIcon, X } from "lucide-react";
+import { useSelector , useDispatch } from "react-redux";
+import { useAuth } from "@clerk/clerk-react";
+import { updateUser } from "../features/user/userSlice";
+import toast from "react-hot-toast";
+
+
 const ProfileModal = ({setShowEdit}) => {
-  const user = dummyUserData;
+  const user = useSelector((state)=>state.user.value);
+  const dispatch = useDispatch()
+  const {getToken} = useAuth()
 
   const [editform, setEditform] = useState({
     full_name: user.full_name,
@@ -11,12 +19,32 @@ const ProfileModal = ({setShowEdit}) => {
     bio: user.bio,
     location: user.location,
     profile_picture: null,
-    cover_photo: null,
+    cover_picture: null,
   });
 
   const handleSaveProfile = async (e) => {
     // Function to handle saving profile changes
     e.preventDefault();
+    try {
+      const token = await getToken()
+
+      let userData = new FormData()
+
+      const {full_name,bio,location,username,profile_picture,cover_picture} = editform
+
+      userData.append('full_name' , full_name)
+      userData.append('bio' , bio)
+      userData.append('location' , location)
+      userData.append('username' , username)
+      profile_picture && userData.append('profile' , profile_picture)
+      cover_picture && userData.append('cover' , cover_picture)
+
+      dispatch(updateUser({userData,token}))
+
+      setShowEdit(false)
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
   return ( 
     <div className="fixed top-0 bottom-0 left-0 right-0 z-110 h-screen overflow-y-scroll bg-black/50">
@@ -31,7 +59,11 @@ const ProfileModal = ({setShowEdit}) => {
           </div>
 
             </div>
-          <form onSubmit={handleSaveProfile} className="space-y-4">
+          <form onSubmit={(e)=>
+            toast.promise(
+              handleSaveProfile(e),{loading : 'Saving...'}              
+            )}
+            className="space-y-4">
             {/* {Edit Profile Picture} */}
             <div className="flex flex-col items-start gap-3">
               <label
@@ -69,11 +101,11 @@ const ProfileModal = ({setShowEdit}) => {
               </label>
             </div>
 
-            {/* Cover Photo */}
+            {/* Cover Picture */}
 
             <div className="flex flex-col items-start gap-3">
               <label
-                htmlFor="cover_photo"
+                htmlFor="cover_picture"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Cover Photo
@@ -81,21 +113,21 @@ const ProfileModal = ({setShowEdit}) => {
                   hidden
                   type="file"
                   accept="image/*"
-                  id="cover_photo"
+                  id="cover_picture"
                   className="w-full p-3 border border-gray-200 rounded-lg"
                   onChange={(e) =>
                     setEditform({
                       ...editform,
-                      cover_photo: e.target.files[0],
+                      cover_picture: e.target.files[0],
                     })
                   }
                 />
                 <div className="group/cover relative">
                   <img
                     src={
-                      editform.cover_photo
-                        ? URL.createObjectURL(editform.cover_photo)
-                        : user.cover_photo
+                      editform.cover_picture
+                        ? URL.createObjectURL(editform.cover_picture)
+                        : user.cover_picture
                     }
                     alt=""
                     className="w-80 h-40 rounded-lg bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 object-cover mt-2"

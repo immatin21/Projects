@@ -4,16 +4,56 @@ import { dummyUserData } from "../assets/assets";
 import { X } from "lucide-react";
 import { Image } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useAuth } from "@clerk/clerk-react";
+import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const [content, setContent] = useState("");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const user = dummyUserData;
+  const {getToken} = useAuth()
+  const navigate = useNavigate()
+  const user = useSelector((state)=>state.user.value);
 
   const handleSubmit = async () => {
     // Logic to submit post
+
+      if(images.length === 0 && !content){
+        toast.error("Select atleast one image or add some text")
+      }
+      setLoading(true)
+
+      const postType = images.length && content ? "textwithimage" : images.length ? "image" : "text"
+
+      try {
+        const formData = new FormData()
+
+        formData.append('content',content)
+        formData.append('post_type',postType)
+        
+        images.map((image)=>{
+          formData.append('images',image)
+        })
+        
+        const {data} = await api.post('/api/post/add', formData ,{
+          headers : {Authorization : `Bearer ${await getToken()}`}
+        })
+
+        if(data.success){
+          navigate('/')
+        }
+        else{
+          console.log(data.message)
+          throw new Error(data.message)
+        }
+      } catch (error) {
+          console.log(error.message)
+          throw new Error(error.message)
+      }
+      setLoading(false)
   };
 
   return (
@@ -54,7 +94,7 @@ const CreatePost = () => {
           {images.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-4">
               {images.map((image, i) => (
-                <div key={index} className="relative group">
+                <div key={i} className="relative group">
                   <img
                     src={URL.createObjectURL(image)}
                     alt="image"
@@ -101,8 +141,6 @@ const CreatePost = () => {
             )} className="text-sm bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-8 py-2 rounded-md font-medium hover:from-indigo-600 hover:to-purple-700 transition active:scale-95 cursor-pointer">
               Publish Post
             </button>
-
-                                                                {/* Continue Video from 04:47:00 */}
 
           </div>
         </div>

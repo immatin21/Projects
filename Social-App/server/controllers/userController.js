@@ -281,15 +281,15 @@ export const acceptConnectionRequest = async (req,res) => {
 export const getUserProfiles = async (req,res) => {
   try {
     const {profileId} = req.body
-    const profileUser = await User.findById(profileId)
+    const profile = await User.findById(profileId)
 
-    if(!profileUser){
+    if(!profile){
       return res.json({success : false, message : "User not found"})
     }
 
     const posts = await Post.find({user : profileId}).populate('user')
 
-    res.json({success:true, profileUser, posts})
+    res.json({success:true, profile, posts})
 
   } catch (error) {
     console.log(error);
