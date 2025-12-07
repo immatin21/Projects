@@ -9,11 +9,11 @@ import { inngest } from "../inngest/index.js";
 export const addStory = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const { content, media_type, background_color } = req.body;
+    const { content, media_type, background_colour } = req.body;
     const media = req.file;
     let media_urls = "";
 
-    if (media_type === "image" || media_type === "video") {
+    if (media_type === "image") {
       const fileBuffer = fs.readFileSync(media.path);
       const response = await imagekit.upload({
         file: fileBuffer,
@@ -29,6 +29,17 @@ export const addStory = async (req, res) => {
       });
       media_urls = url;
     }
+    if (media_type === "video") {
+      const fileBuffer = fs.readFileSync(media.path);
+      const response = await imagekit.upload({
+        file: fileBuffer,
+        fileName: media.originalname,
+      });
+      const url = imagekit.url({
+        path: response.filePath
+      });
+      media_urls = url;
+    }
 
     // Create story
     const story = await Story.create({
@@ -36,7 +47,7 @@ export const addStory = async (req, res) => {
         content,
         media_urls,
         media_type,
-        background_color,
+        background_colour,
     })
 
     // Schedule story deletion after 24 hours

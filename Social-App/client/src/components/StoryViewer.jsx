@@ -45,11 +45,11 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
         switch (viewStory.media_type) {
             case 'image':
                 return (
-                    <img src={viewStory.media_url} alt="image url" className="max-w-full max-h-screen object-contain" />
+                    <img src={viewStory.media_urls} alt="image url" className="max-w-full max-h-screen object-contain" />
                 );
             case 'video':
                 return (
-                    <video controls autoPlay onEnded={()=>setViewStory(null)} src={viewStory.media_url} alt="video url" className="max-h-screen" />
+                    <video controls autoPlay onEnded={()=>setViewStory(null)} src={viewStory.media_urls} alt="video url" className="max-h-screen" />
                 );
             case 'text':
                 return (
@@ -70,7 +70,7 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
       style={{
         backgroundColor:
           viewStory.media_type === "text"
-            ? viewStory.background_color
+            ? viewStory.background_colour
             : "black",
       }}
     >

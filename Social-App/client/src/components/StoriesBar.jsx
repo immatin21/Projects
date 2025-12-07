@@ -5,15 +5,33 @@ import { Plus } from "lucide-react";
 import moment from "moment";
 import StoryModal from "./StoryModal";
 import StoryViewer from "./StoryViewer";
+import { useAuth } from "@clerk/clerk-react";
+import api from "../api/axios";
 
 const StoriesBar = () => {
+  const {getToken} = useAuth()
   const [stories, setStories] = useState([]);
   const [showModel, setShowModel] = useState(false)
   const [viewStory, setViewStory] = useState(null)
 
 
   const fetchStories = async () => {
-    setStories(dummyStoriesData);
+    const token = await getToken()
+
+    try {
+      const {data} = await api.get('/api/story/get',{
+        headers : {Authorization : `Bearer ${token}`}
+      })
+
+      if(data.success){
+        setStories(data.stories)
+      }
+      else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)      
+    }
   };
 
   useEffect(() => {
@@ -57,13 +75,13 @@ const StoriesBar = () => {
               <div className="absolute inset-0 bg-black rounded-lg z-1 overflow-hidden">
                 {story.media_type === "image" ? (
                   <img
-                    src={story.media_url}
+                    src={story.media_urls}
                     alt="Story Image"
                     className="w-full h-full object-cover rounded-lg hover:scale-110 transition duration-500 opacity-90 hover:opacity-100"
                   />
                 ) : (
                   <video
-                    src={story.media_url}
+                    src={story.media_urls}
                     className="w-full h-full object-cover rounded-lg hover:scale-110 transition duration-500 opacity-90 hover:opacity-100"
                   />
                 )}
