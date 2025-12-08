@@ -12,14 +12,14 @@ import { addMessages, fetchMessages, resetMessages, setMessages } from "../featu
 const ChatBox = () => {
   
   const {messages} = useSelector((state)=>state.messages);
+  const {getToken} = useAuth()
+  const {userId} = useParams()
+  const dispatch = useDispatch()
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [user, setUser] = useState(null);
   const messagesEndRef = useRef(null);
   
-  const {getToken} = useAuth()
-  const {userId} = useParams()
-  const dispatch = useDispatch()
   const connections = useSelector((state)=> state.connections.connections)
   
   const fetchUserMessages = async () => {
@@ -39,8 +39,8 @@ const ChatBox = () => {
 
       const token = await getToken()
       const formData = new FormData()
-      formData.append('text' , text)
       formData.append('to_user_id' , userId)  
+      formData.append('text' , text)
       image && formData.append('image' , image)
 
       const {data} = await api.post('/api/message/send' , formData , {
@@ -66,14 +66,14 @@ const ChatBox = () => {
     return () => {
       dispatch(resetMessages())
     }
-  }, [userId])
+  }, [userId]) 
   
   useEffect(() => {
     if(connections.length > 0 ){
-      const user = connections.find(connections => connections._id == userId)
+      const user = connections.find(connection => connection._id === userId)
       setUser(user)
     }
-  }, [userId,connections])
+  }, [connections,userId])
 
 
   useEffect(() => {

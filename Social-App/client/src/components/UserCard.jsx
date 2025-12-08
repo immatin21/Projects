@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import toast from "react-hot-toast";
 import { fetchConnections } from "../features/connections/connectionsSlice";
+import { fetchUser } from '../features/user/userSlice'
+
 
 const UserCard = ({ user }) => {
   const { getToken } = useAuth();
