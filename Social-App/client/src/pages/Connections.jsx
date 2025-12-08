@@ -6,25 +6,92 @@ import {
   UserRoundPen,
   MessageSquare,
   icons,
+  DeleteIcon,
+  CrossIcon,
+  X,
+  MoveRightIcon,
+  Check,
 } from "lucide-react";
-import {
-  dummyConnectionsData as connections,
-  dummyFollowersData as followers,
-  dummyFollowingData as following,
-  dummyPendingConnectionsData as pendingConnections,
-} from "../assets/assets";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState , useEffect} from "react";
+import { useAuth } from "@clerk/clerk-react";
+import { fetchConnections } from "../features/connections/connectionsSlice";
+import toast from "react-hot-toast";
+import api from "../api/axios";
 
 const Connections = () => {
   const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState('Followers')
+  const {connections,pendingConnections,followers,following} = useSelector((state)=>state.connections)
   const dataArray = [
     {label : 'Followers', value : followers, icon : Users},
     {label : 'Following', value : following, icon : UserCheck},
     {label : 'Pending', value : pendingConnections, icon : UserRoundPen},
     {label : 'Connections', value : connections, icon : UserPlus},
   ]
+
+  const {getToken} = useAuth()
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    getToken().then((token)=>{
+      dispatch(fetchConnections(token))
+    })
+  }, [])
+
+  // Handle function to Unfollow users
+  const handleUnfollow = async (userId) => {
+    try {
+      const {data} = await api.post('/api/user/unfollow', {id : userId}, {
+        headers : {Authorization : `Bearer ${await getToken()}`}
+      }) 
+      if(data.success){
+        toast.success(data.message)
+        dispatch(fetchConnections(await getToken()))
+      }else{
+        toast(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+  // Accept Connections
+  const acceptConnections = async (userId) => {
+    try {
+      const {data} = await api.post('/api/user/accept', {id : userId}, {
+        headers : {Authorization : `Bearer ${await getToken()}`}
+      }) 
+      if(data.success){
+        toast.success(data.message)
+        dispatch(fetchConnections(await getToken()))
+      }else{
+        toast(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+  // Handle Remove Connection
+    const handleRemoveConnections = async (userId) => {
+    try {
+      const {data} = await api.post('/api/user/remove-connections', {id : userId}, {
+        headers : {Authorization : `Bearer ${await getToken()}`}
+      }) 
+      if(data.success){
+        toast.success(data.message)
+        dispatch(fetchConnections(await getToken()))
+      }else{
+        toast(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   return (
   <div className="min-h-screen bg-slate-50">
@@ -81,15 +148,16 @@ const Connections = () => {
 
                     {
                       currentTab === "Following" && (
-                        <button className="w-full text-sm rounded p-2 bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer">
+                        <button onClick={()=>handleUnfollow(user._id)} className="w-full text-sm rounded p-2 bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer">
                           Unfollow
                         </button>
                       )
                     }
                     {
                       currentTab === "Pending" && (
-                        <button className="w-full text-sm rounded p-2 bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer">
-                          Accept
+                        <button onClick={()=>acceptConnections(user._id)} className="w-full text-sm rounded p-2 bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer flex justify-center items-center gap-2">
+                          <Check className="w-5 h-5 text-green-700 "/>
+                          <span>Accept</span>
                         </button>
                       )
                     }
@@ -99,6 +167,16 @@ const Connections = () => {
                           <MessageSquare className="w-4 h-4"/>
                           Message
                         </button>
+                        
+                      )
+                    }
+                    {
+                      currentTab === "Connections" && (
+                        <button onClick={()=>handleRemoveConnections(user._id)} className="w-full text-sm rounded p-2 bg-slate-100 hover:bg-slate-200 text-black active:scale-95 transition cursor-pointer flex justify-center items-center">
+                          <X className="w-5 h-5 text-red-700"/>
+                          <span>Remove</span> 
+                        </button>
+                        
                       )
                     }
 
