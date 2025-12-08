@@ -45,7 +45,7 @@ export const sendMessage = async (req,res) =>{
         let message_type = image ? 'image' : 'text'
 
         if (message_type === 'image') {
-            fileBuffer = fs.readFileSync(image.path)
+            const fileBuffer = fs.readFileSync(image.path)
             const response = await imagekit.upload({
                 file : fileBuffer,
                 fileName : image.originalname
@@ -89,21 +89,24 @@ export const sendMessage = async (req,res) =>{
 // Get Chat Messages
 export const getChatMessages = async (req,res) =>{
     try {
+        
         const {userId} = req.auth()
         const {to_user_id} = req.body
+
 
         const messages = await Message.find({
             $or : [
                 {from_user_id : userId , to_user_id},
                 {from_user_id : to_user_id , to_user_id : userId}
             ]
-        }).sort({created_at : -1})
+        }).sort({createdAt : -1})
 
         // Mark messages as seen
 
         await Message.updateMany({from_user_id : to_user_id , to_user_id : userId}, {seen : true})
 
         res.json({success : true , messages})
+        
 
     } catch (error) {
         console.log(error)
