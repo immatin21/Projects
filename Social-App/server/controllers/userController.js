@@ -3,6 +3,8 @@ import imagekit from "../configs/imageKit.js";
 import fs from "fs";
 import Connection from "../models/Connection.js";
 import Post from "../models/Post.js";
+import { inngest } from "../inngest/index.js";
+
 // Get user data  using UserID from Clerk
 export const getUserData = async (req, res) => {
   try {
@@ -129,7 +131,7 @@ export const discoverUsers = async (req, res) => {
 export const followUser = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const id = req.body 
+    const {id} = req.body 
 
     const user = await User.findById(userId);
 
@@ -157,7 +159,7 @@ export const followUser = async (req, res) => {
 export const unFollowUser = async (req, res) => {
   try {
     const { userId } = req.auth();
-    const id = req.body 
+    const {id} = req.body 
 
     const user = await User.findById(userId);
 
@@ -171,7 +173,7 @@ export const unFollowUser = async (req, res) => {
     res.json({ success: true, message: "User Unfollowed successfully" });
 
   } catch (error) {
-
+    res.json({success : false , message : error.message})
   }
 };
 
@@ -225,6 +227,48 @@ export const sendConnectionRequest = async (req,res) => {
   }
 }
 
+// Remove Connections
+export const removeConnection = async (req, res) => {
+  try {
+    const { userId } = req.auth()
+    const { id } = req.body
+
+    const connection = await Connection.findOne({
+      $or: [
+        { from_user_id: userId, to_user_id: id },
+        { from_user_id: id, to_user_id: userId }
+      ]
+    });
+
+    if (!connection || connection.status !== "Accepted") {
+      return res.json({
+        success: false,
+        message: "No active connection found"
+      });
+    }
+
+    await Connection.findByIdAndDelete(connection._id);
+
+    await User.findByIdAndUpdate(userId, {
+      $pull: { connections: id }
+    });
+
+    await User.findByIdAndUpdate(id, {
+      $pull: { connections: userId }
+    });
+
+    res.json({
+      success: true,
+      message: "Connection removed successfully"
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
 // Get User Connections
 
 export const getConnectionRequest = async (req,res) => {
@@ -262,7 +306,7 @@ export const acceptConnectionRequest = async (req,res) => {
     await user.save();
 
     const to_user = await User.findById(id);
-    user.connections.push(userId);
+    to_user.connections.push(userId);
     await to_user.save();
 
     connection.status = 'Accepted';

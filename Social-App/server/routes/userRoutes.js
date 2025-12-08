@@ -1,5 +1,5 @@
 import express from 'express'
-import { acceptConnectionRequest, discoverUsers, followUser, getConnectionRequest, getUserData, getUserProfiles, sendConnectionRequest, unFollowUser, updateUserData } from '../controllers/userController.js';
+import { acceptConnectionRequest, discoverUsers, followUser, getConnectionRequest, getUserData, getUserProfiles, removeConnection, sendConnectionRequest, unFollowUser, updateUserData } from '../controllers/userController.js';
 import { protect } from '../middlewares/auth.js';
 import { upload } from '../configs/multer.js';
 import { getUserRecentMessages } from '../controllers/messageController.js';
@@ -14,6 +14,7 @@ userRouter.post('/follow',protect,followUser)
 userRouter.post('/unfollow',protect,unFollowUser)
 userRouter.post('/connect',protect,sendConnectionRequest)
 userRouter.post('/accept',protect,acceptConnectionRequest)
+userRouter.post('/remove-connections',protect,removeConnection)
 userRouter.get('/connections',protect,getConnectionRequest)
 userRouter.post('/profiles',getUserProfiles)
 userRouter.get('/recent-messages',protect,getUserRecentMessages)

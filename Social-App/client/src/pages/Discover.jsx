@@ -4,22 +4,59 @@ import { dummyConnectionsData } from "../assets/assets";
 import { Search } from "lucide-react";
 import UserCard from "../components/UserCard";
 import Loading from "../components/Loading";
+import toast from "react-hot-toast";
+import api from "../api/axios";
+import { useAuth } from "@clerk/clerk-react";
+import { useEffect } from "react";
+import { fetchUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
 
 const Discover = () => {
   const [input, setInput] = useState("");
-  const [users, setUsers] = useState(dummyConnectionsData);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const {getToken} = useAuth()
+  const dispatch = useDispatch()
+  const handleSearch = async (query) => {
+      try {
+        setLoading(true)
 
-  const handleSearch = async (e) => {
-    if (e.key === "Enter") {
-      setUsers([]);
-      setLoading(true);
-      setTimeout(() => {
-        setUsers(dummyConnectionsData);
-        setLoading(false);
-      }, 1000);
-    }
+        const {data} = await api.post('/api/user/discover',{input : query} ,{
+          headers : {Authorization : `Bearer ${await getToken()}`}
+        })
+        
+        data.success ? setUsers(data.users) : toast.error(data.message)
+        
+      } catch (error) {
+        toast.error(error.message)
+      }finally{
+        setLoading(false)
+      }
+    
   };
+
+  useEffect(() => {
+    getToken().then((token)=>{
+      dispatch(fetchUser(token))
+    })
+  }, [])
+
+  useEffect(() => {
+    
+    const delay = setTimeout(() => {
+      if(input.trim()){
+        handleSearch(input)
+      }else{
+        setUsers([])
+      }
+    }, 300);
+  
+    return () => {
+      clearTimeout(delay)
+    }
+  }, [input])
+  
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -45,7 +82,7 @@ const Discover = () => {
                 className="pl-10 sm:pl-12 w-full py-2 border border-gray-300 rounded-md max-sm:text-sm"
                 onChange={(e)=>setInput(e.target.value)}
                 value={input}
-                onKeyUp={handleSearch}
+                // onKeyUp={handleSearch}
               />
             </div>
           </div>

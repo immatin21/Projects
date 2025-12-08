@@ -58,7 +58,7 @@ const Profile = () => {
         {/* {Profile Card} */}
         <div className='bg-white shadow rounded-2xl overflow-hidden'>
           {/* {Cover Photo} */}
-          <div className='h-40 md:h-56 bggradient-to-r from-indigo-200 via-purple-200 to-pink-200'>
+          <div className='h-40 md:h-56 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200'>
             {user.cover_picture && <img src={user.cover_picture} alt="" className='w-full h-full object-cover'/>}
           </div>
 
