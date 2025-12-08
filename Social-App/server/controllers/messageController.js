@@ -46,7 +46,7 @@ export const sendMessage = async (req,res) =>{
 
         if (message_type === 'image') {
             fileBuffer = fs.readFileSync(image.path)
-            const response = imagekit.upload({
+            const response = await imagekit.upload({
                 file : fileBuffer,
                 fileName : image.originalname
             })
