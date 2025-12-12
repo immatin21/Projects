@@ -5,7 +5,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section id="about" className="flex justify-center w-full relative py-20">
+    <section className="flex justify-center w-full relative py-20">
       <div className="container bg-[#121212D9] flex items-center justify-center max-w-6xl mx-auto border border-white/5 rounded-2xl py-4 px-2">
         {/* Left Part */}
         <div className="w-1/2 p-10 grid gap-6">
@@ -43,56 +43,40 @@ const About = () => {
 
         {/* Right Part */}
         <div className="relative w-1/2 pr-5">
-                  <div className="absolute inset-0 bg-cyan-300/10 blur-2xl "></div>
+          <div className="absolute inset-0 bg-cyan-300/10 blur-2xl "></div>
 
-                  <div className=" bg-[#18181B] flex items-center justify-center max-w-lg mx-auto text-white rounded-2xl border border-white/5">
-                  <ul className="p-4 w-full text-md font-medium space-y-2">
-                    <li className="">
-                        <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pt-2 pb-4">
-                            <span className="text-gray-400">
-                                Location
-                            </span>
-                            <span className="">
-                                Remote / Hybrid / On-site
-                            </span>
-                        </div>
-                    </li>
-                    
-                    <li className="">
-                        <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pb-4">
-                            <span className="text-gray-400">
-                                Experience
-                            </span>
-                            <span className="">
-                                Fresher
-                            </span>
-                        </div>
-                    </li>
-                    <li className="">
-                        <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pb-4">
-                            <span className="text-gray-400">
-                                Availability
-                            </span>
-                            <span className="inline-flex text-green-500 items-center justify-center ">
-                                <Dot className="h-10 w-10 blink"/> Open to work
-                            </span>
-                        </div>
-                    </li>
-                    <li className="">
-                        <div className="flex justify-between items-center border-white/5 pr-2 pl-2 pb-2">
-                            <span className="text-gray-400">
-                                Focus
-                            </span>
-                            <span className="">
-                                Full Stack Dev
-                            </span>
-                        </div>
-                    </li>
-                    
-                  </ul>
+          <div className=" bg-[#18181B] flex items-center justify-center max-w-lg mx-auto text-white rounded-2xl border border-white/5">
+            <ul className="p-4 w-full text-md font-medium space-y-2">
+              <li className="">
+                <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pt-2 pb-4">
+                  <span className="text-gray-400">Location</span>
+                  <span className="">Remote / Hybrid / On-site</span>
+                </div>
+              </li>
+
+              <li className="">
+                <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pb-4">
+                  <span className="text-gray-400">Experience</span>
+                  <span className="">Fresher</span>
+                </div>
+              </li>
+              <li>
+                <div className="flex justify-between items-center border-white/5 border-b pr-2 pl-2 pb-4">
+                  <span className="text-gray-400">Availability</span>
+                  <span className="inline-flex text-green-500 items-center justify-center ">
+                    <Dot className="h-10 w-10 blink" /> Open to work
+                  </span>
+                </div>
+              </li>
+              <li className="">
+                <div className="flex justify-between items-center border-white/5 pr-2 pl-2 pb-2">
+                  <span className="text-gray-400">Focus</span>
+                  <span className="">Full Stack Dev</span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-        </div>
-        
       </div>
     </section>
   );
