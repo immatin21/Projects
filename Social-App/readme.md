@@ -111,7 +111,7 @@ PingUp also focuses strongly on user safety and privacy. While the platform supp
 </td>
 <td align="center">
 <strong>Feed & Stories</strong><br/>
-<img src="screenshots/feed.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
+<img src="screenshots/Feed.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
 </td>
 </tr>
 
@@ -122,14 +122,14 @@ PingUp also focuses strongly on user safety and privacy. While the platform supp
 </td>
 <td align="center">
 <strong>Discover People</strong><br/>
-<img src="screenshots/discover.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
+<img src="screenshots/Discover.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
 </td>
 </tr>
 
 <tr>
 <td align="center">
 <strong>Profile Page</strong><br/>
-<img src="screenshots/profile.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
+<img src="screenshots/Profile.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
 </td>
 <td align="center">
 <strong>Edit Profile</strong><br/>
@@ -140,11 +140,11 @@ PingUp also focuses strongly on user safety and privacy. While the platform supp
 <tr>
 <td align="center">
 <strong>Connections Page</strong><br/>
-<img src="screenshots/connections.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
+<img src="screenshots/Connections.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
 </td>
 <td align="center">
 <strong>Messages Page</strong><br/>
-<img src="screenshots/messages.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
+<img src="screenshots/Messages.png" width="420" style="border:1px solid #ddd; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); margin:10px;"/>
 </td>
 </tr>
 
