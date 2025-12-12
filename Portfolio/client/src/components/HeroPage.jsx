@@ -18,7 +18,7 @@ const HeroPage = () => {
   }, []);
 
   return (
-    <div className="relative bg-black overflow-hidden min-h-screen">
+    <div id="about" className="relative bg-black overflow-hidden min-h-screen">
       {/* Light Rays Background */}
       <div className="absolute inset-0">
         <LightRays

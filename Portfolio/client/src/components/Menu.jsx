@@ -2,8 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const menuItems = [
-  { index: "01", label: "Home", link: "#home" },
-  { index: "02", label: "About", link: "#about" },
+  { index: "01", label: "About", link: "#about" },
+  { index: "02", label: "Skills", link: "#skills" },
   { index: "03", label: "Projects", link: "#projects" },
   { index: "04", label: "Education", link: "#education" },
   { index: "05", label: "Contact", link: "#contact" },
