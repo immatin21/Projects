@@ -5,6 +5,7 @@ import "./App.css";
 import HeroPage from "./components/HeroPage";
 import Loading from "./components/Loading";
 import Menu from "./components/Menu";
+import About from "./components/About";
 
 function App() {
   // const [loading, setLoading] = useState(true)
@@ -21,6 +22,7 @@ function App() {
   return (
     <div className="main-page h-[2000px]">
       <HeroPage />
+      <About/>
     </div>
   );
 }

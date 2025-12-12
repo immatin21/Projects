@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const AnimatedName = ({ text, gradients }) => {
+const AnimatedName = ({ text, gradients}) => {
   // Split words first, then split letters inside them
   const words = text.split(" ");
 
