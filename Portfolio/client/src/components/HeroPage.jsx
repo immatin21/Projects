@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import LightRays from "../Animations/LightRays";
 import AnimatedRings from "../Animations/AnimatedRings";
 import AnimatedName from "../Animations/AnimatedLetters";
-import MagicText from "./TextType";
+import MagicText from "../Animations/TextType";
 const HeroPage = () => {
   const [buffer, setBuffer] = useState(false);
 
@@ -45,7 +45,7 @@ const HeroPage = () => {
           <AnimatedName
             text="Matin Mondal"
             gradients={[
-              { from: "from-blue-500", to: "to-blue-800" },
+              { from: "from-blue-400", to: "to-blue-800" },
               { from: "from-cyan-500", to: "to-cyan-800" },
             ]}
           />
@@ -75,7 +75,7 @@ const HeroPage = () => {
                   shiny={false}
                   showCursor={false}
                   reverseMode={false}
-                  initialDelay={4000}
+                  initialDelay={2500}
                   typingSpeed={30}
                   mode="continuous"
                   className="w-full font-normal"
@@ -87,7 +87,7 @@ const HeroPage = () => {
 
         {/* RIGHT SIDE — GIVE HEIGHT TO RING */}
         <div className="w-1/2 flex justify-center items-center ">
-          <div className="w-[500px] h-[500px] relative ">
+          <div className="w-[650px] h-[650px] relative ">
             <div
               className="bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px]
  absolute inset-0 pointer-events-none "

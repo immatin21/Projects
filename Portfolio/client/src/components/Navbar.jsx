@@ -36,15 +36,15 @@ const Navbar = () => {
             <h1>Portfolio</h1>
           </div>
           <motion.button
-            animate={isOpen ? { width: "86px"  } : { width: "110px" }}
+            animate={isOpen ? { width: 48, paddingLeft: 0, paddingRight: 0, gap : 0 } : { width: 110, paddingLeft: 12, paddingRight: 12  }}
             transition={{ duration: 0.25 }}
             onClick={() => setIsOpen(!isOpen)}
             className="border border-white/20 flex items-center justify-center uppercase text-xs hover:scale-105 rounded-full px-4 py-2 gap-2 hover:border-white/50 hover:bg-white/5"
           >
             <motion.span
-              animate={isOpen ? { opacity: 0, x: -6 } : { opacity: 1, x: 0 }}
+              animate={isOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: "auto"}}
               transition={{ duration: 0.2 }}
-              className="whitespace-nowrap"
+              className="whitespace-nowrap overflow-hidden uppercase text-xs"
             >
               Menu
             </motion.span>
@@ -52,7 +52,7 @@ const Navbar = () => {
             <motion.div
               animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
               transition={{ duration: 0.25 }}
-              className="w-6 h-6 flex items-center justify-center"
+              className="w-6 h-6 flex items-center justify-center "
             >
               
                 {isOpen ? (
