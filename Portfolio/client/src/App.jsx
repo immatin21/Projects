@@ -8,6 +8,7 @@ import Menu from "./components/Menu";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import HelpTerminal from "./components/HelpTerminal";
+import Card from "./components/Card";
 
 function App() {
   // const [loading, setLoading] = useState(true)
@@ -27,6 +28,7 @@ function App() {
       <About/>
       <Skills/>
       <HelpTerminal/>
+      <Card/>
     </div>
   );
 }
