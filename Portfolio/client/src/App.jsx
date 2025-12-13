@@ -7,6 +7,7 @@ import Loading from "./components/Loading";
 import Menu from "./components/Menu";
 import About from "./components/About";
 import Skills from "./components/Skills";
+import HelpTerminal from "./components/HelpTerminal";
 
 function App() {
   // const [loading, setLoading] = useState(true)
@@ -25,6 +26,7 @@ function App() {
       <HeroPage />
       <About/>
       <Skills/>
+      <HelpTerminal/>
     </div>
   );
 }
