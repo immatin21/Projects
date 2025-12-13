@@ -1,0 +1,134 @@
+import React from "react";
+
+const projects = [
+  {
+    imageSrc: "/src/Icons/Sign-In Page.png",
+    name: "Ping-up Social Media App",
+    description:
+      "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Clerk",
+      "Inngest"
+    ],
+    liveUrl: "https://ping-up-phi-liard.vercel.app"
+  },
+  {
+    imageSrc: "/src/Icons/Sign-In Page.png",
+    name: "Ping-up Social Media App",
+    description:
+      "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Clerk",
+      "Inngest"
+    ],
+    liveUrl: "https://ping-up-phi-liard.vercel.app"
+  },
+  {
+    imageSrc: "/src/Icons/Sign-In Page.png",
+    name: "Ping-up Social Media App",
+    description:
+      "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Clerk",
+      "Inngest"
+    ],
+    liveUrl: "https://ping-up-phi-liard.vercel.app"
+  }
+];
+
+
+const Card = () => {
+  return (
+    <div className="max-w-6xl mx-auto py-20">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-white">
+        {/* Project Cards */}
+
+        {
+            projects.map((item)=>(
+                 <div className="group relative rounded-3xl border border-white/5 overflow-hidden hover:border-purple-500/30 duration-500 transition-transform ease-out hover:-translate-y-2 hover:shadow-xl">
+          <div className="relative h-64 overflow-hidden">
+            <div className="absolute inset-0 bg-linear-to-t to-transparent z-10 opacity-60"></div>
+            <img
+              src={item.imageSrc}
+              alt=""
+              className='className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"'
+            />
+          </div>
+          <div className="p-8 relative z-20 -mt-12">
+            <div className="rounded-2xl p-6 backdrop-blur-xl">
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">
+                {item.name}
+              </h3>
+              <div className="mb-6">
+                <p className="text-gray-400 text-sm ">
+                 {
+                    item.description
+                 }
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {
+                    item.techStack.map((tech)=>(
+                        <span className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 border border-white/10 text-gray-300">
+                  {tech}
+                </span>
+                    ))
+                }
+
+              </div>
+              <a
+                href={item.liveUrl}
+                target="_blank"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-purple-400 transition-colors"
+              >
+                <span>View Project</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="lucide lucide-external-link w-4 h-4"
+                  aria-hidden="true"
+                >
+                  <path d="M15 3h6v6"></path>
+                  <path d="M10 14 21 3"></path>
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+            ))
+        }
+
+       
+
+
+
+
+      </div>
+    </div>
+  );
+};
+
+export default Card;

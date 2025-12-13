@@ -28,14 +28,16 @@ const About = () => {
                   animationSpeed={3}
                   showBorder={false}
                 >
-                  Passionate about
+                  Focused on
                 </GradientText>
 
-                <h2 className="">creating digital experiences</h2>
+                <h2 className="">building modern web experiences</h2>
               </div>
               <p className="text-gray-400 text-lg">
-                Crafting digital experiences with modern technologies. Building
-                innovative solutions since 2024.
+                I’m a full stack developer focused on building modern web
+                applications through hands-on, project-based learning. I work
+                with React, Node.js, MongoDB, and Tailwind CSS, and enjoy
+                turning ideas into real, usable products.
               </p>
             </div>
           </div>
