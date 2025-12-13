@@ -27,6 +27,10 @@ const frontendSkills = [
     src: "/src/Icons/reactdom.png",
   },
   {
+    text: "REST APIs",
+    src: "/src/Icons/restapi.jpg",
+  },
+  {
     text: "Tailwind CSS",
     src: "/src/Icons/Tailwind.webp",
   },
@@ -122,10 +126,10 @@ const Skills = () => {
         </p>
 
         {/* Main Container */}
-        <div className="container bg-[#121212D9] flex flex-col items-center justify-center px-10 py-6 border border-white/5 rounded-2xl my-5">
+        <div className="container flex flex-col items-center justify-center px-10 py-10 my-6">
           <div className="grid grid-cols-2 gap-10 w-full">
             {/* Card 1 */}
-            <div className="bg-[#18181B] flex flex-col items-center justify-start text-white rounded-2xl border border-white/5 py-4 pb-6">
+            <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl  border border-white/10 py-6 pb-6">
               <div className="inline-flex text-2xl font-medium gap-2 items-center pb-8 p-2 w-fit">
                 <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
                   <svg
@@ -151,7 +155,7 @@ const Skills = () => {
                 {frontendSkills.map((skill) => (
                   <div
                     key={skill.text}
-                    className="bg-white/5 px-4 py-2 text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                    className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
                   >
                     <img className="w-5 h-5" src={skill.src} alt={skill.text} />
                     <span className="text-sm">{skill.text}</span>
@@ -162,7 +166,7 @@ const Skills = () => {
 
             <div className="flex flex-col gap-10">
               {/* Card 2 */}
-              <div className="bg-[#18181B] flex flex-col items-center justify-start text-white rounded-2xl border border-white/5 px-8 py-4 pb-6">
+              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-8 py-4 pb-6">
                 <div className="inline-flex text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
                   <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
                     <svg
@@ -189,7 +193,7 @@ const Skills = () => {
                   {databaseTools.map((skill) => (
                     <div
                       key={skill.text}
-                      className="bg-white/5 px-4 py-2 text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
                     >
                       <img
                         className="w-5 h-5"
@@ -203,7 +207,7 @@ const Skills = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="bg-[#18181B] flex flex-col items-center justify-start text-white rounded-2xl border border-white/5 px-8 py-4 pb-6">
+              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-8 py-4 pb-6">
                 <div className="inline-flex text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
                   <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
                     <svg
@@ -232,7 +236,7 @@ const Skills = () => {
                   {softSkills.map((skill) => (
                     <div
                       key={skill.text}
-                      className="bg-white/5 px-4 py-2 text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
                     >
 
                       <span className="text-sm">{skill.text}</span>
