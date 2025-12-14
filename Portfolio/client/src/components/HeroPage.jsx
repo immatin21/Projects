@@ -83,7 +83,7 @@ const HeroPage = () => {
               </div>
               <div className="flex gap-4 items-center px-6 py-2 my-5 rounded-3xl w-80 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
                 <span className="text-gray-500 text-xs font-bold uppercase">
-                  Skills:{" "}
+                  Skills:
                 </span>
                 {/* icons */}
                 <div className="inline-flex gap-3">
