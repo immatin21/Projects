@@ -9,19 +9,9 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import HelpTerminal from "./components/HelpTerminal";
 import Card from "./components/Card";
+import Contact from "./components/Contact";
 
 function App() {
-  // const [loading, setLoading] = useState(true)
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false)
-  //   }, 6000);
-
-  //   return () => {
-  //     clearTimeout(timer)
-  //   }
-  // }, [])
-
   return (
     <div className="main-page h-[2000px]">
       <HeroPage />
@@ -29,6 +19,7 @@ function App() {
       <Skills/>
       <HelpTerminal/>
       <Card/>
+      <Contact/>
     </div>
   );
 }
