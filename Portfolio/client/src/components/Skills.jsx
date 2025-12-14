@@ -107,7 +107,7 @@ const softSkills = [
 const Skills = () => {
   return (
     <section id="skills" className="flex justify-center w-full relative py-15">
-      <div className="font-bold text-white flex flex-col gap-6 justify-center items-center text-5xl">
+      <div className="font-bold text-white flex flex-col gap-6 justify-center items-center text-6xl">
         {/* Heading */}
         <div className="inline-flex gap-2">
           <h1>My</h1>
