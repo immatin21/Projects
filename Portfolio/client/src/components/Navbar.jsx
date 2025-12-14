@@ -33,13 +33,13 @@ const Navbar = () => {
           }`}
         >
           <div className="text-2xl md:text-3xl font-bold uppercase">
-            <h1>Portfolio</h1>
+            <a href="#about">Portfolio</a>
           </div>
           <motion.button
             animate={isOpen ? { width: 48, paddingLeft: 0, paddingRight: 0, gap : 0 } : { width: 110, paddingLeft: 12, paddingRight: 12  }}
             transition={{ duration: 0.25 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="border border-white/20 flex items-center justify-center uppercase text-xs hover:scale-105 rounded-full px-4 py-2 gap-2 hover:border-white/50 hover:bg-white/5"
+            className="border cursor-pointer border-white/20 flex items-center justify-center uppercase text-xs hover:scale-105 rounded-full px-4 py-2 gap-2 hover:border-white/50 hover:bg-white/5"
           >
             <motion.span
               animate={isOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: "auto"}}

@@ -4,6 +4,7 @@ import LightRays from "../Animations/LightRays";
 import AnimatedRings from "../Animations/AnimatedRings";
 import AnimatedName from "../Animations/AnimatedLetters";
 import MagicText from "../Animations/TextType";
+import { ArrowDown, ArrowUpRight, FileText, Paperclip } from "lucide-react";
 const HeroPage = () => {
   const [buffer, setBuffer] = useState(false);
 
@@ -81,7 +82,7 @@ const HeroPage = () => {
                   className="w-full font-normal"
                 />
               </div>
-              <div className="flex gap-4 items-center px-6 py-2 my-5 rounded-3xl w-80 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
+              <div className="flex gap-4 items-center px-6 py-2 my-5 rounded-full w-80 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
                 <span className="text-gray-500 text-xs font-bold uppercase">
                   Skills:
                 </span>
@@ -231,7 +232,7 @@ const HeroPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-4 items-center justify-center px-6 py-2 mb-5 rounded-3xl w-90 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
+              <div className="flex gap-4 items-center justify-center px-6 py-2 mb-5 rounded-full w-90 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
                 <span className="text-gray-500 text-xs font-bold uppercase">
                   Current Position:
                 </span>
@@ -262,13 +263,40 @@ const HeroPage = () => {
         </div>
 
         {/* RIGHT SIDE — GIVE HEIGHT TO RING */}
-        <div className="w-1/2 flex justify-center items-center ">
+        <div className="w-1/2 flex justify-center items-center flex-col">
           <div className="w-[650px] h-[650px] relative ">
-            <div
-              className="bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px]
- absolute inset-0 pointer-events-none "
-            ></div>
+            <div className="bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px] absolute inset-0 pointer-events-none "></div>
             <AnimatedRings />
+          </div>
+          <div className="text-white flex gap-4 w-full max-w-xl">
+            {/* Projects */}
+            <a
+              href="#projects"
+              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm cursor-pointer px-8 py-4 rounded-full bg-linear-to-r from-blue-500/50 to-cyan-600"
+            >
+              View my work
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+
+            {/* Contact */}
+            <a
+              href="#contact"
+              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm cursor-pointer px-8 py-4 rounded-full hover:bg-purple-950/10 border border-purple-700"
+            >
+              Get in Touch
+              <ArrowDown className="w-4 h-4" />
+            </a>
+
+            {/* Resume */}
+            <a
+              href="https://drive.google.com/file/d/1aho6aqtxtWcoXGU2FtHWvHTaNTFJ29zk/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm px-8 py-4 rounded-full bg-black/40 border border-white/10"
+            >
+              Resume
+              <FileText className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

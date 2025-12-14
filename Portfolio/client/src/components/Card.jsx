@@ -54,8 +54,8 @@ const projects = [
 
 const Card = () => {
   return (
-    <div id="projects" className="max-w-6xl mx-auto ">
-      <div className="flex gap-4 flex-col py-20">
+    <div id="projects" className="max-w-6xl mx-auto py-20">
+      <div className="flex gap-4 flex-col pb-10">
         <div className="flex gap-2 text-6xl font-bold text-white justify-center leading-normal">
           <h1>Featured</h1>
           <GradientText
@@ -72,7 +72,7 @@ const Card = () => {
           development and modern UI design.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-white">
         {/* Project Cards */}
 
         {projects.map((item, i) => (
@@ -80,17 +80,17 @@ const Card = () => {
             key={i}
             className="group relative rounded-3xl bg-gray-500/10 border border-white/5 overflow-hidden hover:border-purple-500/30 duration-500 transition-transform ease-out hover:-translate-y-2 hover:shadow-xl"
           >
-            <div className="relative h-64 overflow-hidden">
+            <div className="relative h-52 sm:h-64 overflow-hidden">
               <div className="absolute inset-0 z-10 opacity-60"></div>
               <img
                 src={item.imageSrc}
                 alt=""
-                className='className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"'
+                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
               />
             </div>
             <div className="p-8 relative z-20 -mt-12">
               <div className="rounded-2xl p-6 backdrop-blur-xl border border-white/20 bg-black/40">
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">
+                <h3 className=" text-xl sm:text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">
                   {item.name}
                 </h3>
                 <div className="mb-6">
