@@ -19,37 +19,19 @@ const projects = [
     liveUrl: "https://ping-up-phi-liard.vercel.app",
   },
   {
-    imageSrc: "/src/Icons/Sign-In Page.png",
-    name: "Ping-up Social Media App",
+    imageSrc: "/src/Icons/getmeachai.png",
+    name: "GetMeAChai – Creator Support Platform",
     description:
-      "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
+      "A Patreon-style web platform that lets creators showcase their work and receive one-time or recurring support from their audience, with secure authentication and seamless payment integration.",
     techStack: [
-      "React",
-      "Node.js",
-      "Express",
+      "NextJs",
+      "NextAuth",
       "MongoDB",
       "Tailwind CSS",
-      "Clerk",
-      "Inngest",
+      "Razorpay"
     ],
-    liveUrl: "https://ping-up-phi-liard.vercel.app",
-  },
-  {
-    imageSrc: "/src/Icons/Sign-In Page.png",
-    name: "Ping-up Social Media App",
-    description:
-      "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
-    techStack: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Tailwind CSS",
-      "Clerk",
-      "Inngest",
-    ],
-    liveUrl: "https://ping-up-phi-liard.vercel.app",
-  },
+    liveUrl: "https://getmeachaiproject.vercel.app",
+  }
 ];
 
 const Card = () => {
@@ -72,7 +54,7 @@ const Card = () => {
           development and modern UI design.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-10 text-white">
         {/* Project Cards */}
 
         {projects.map((item, i) => (
