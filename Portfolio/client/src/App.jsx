@@ -10,6 +10,8 @@ import Skills from "./components/Skills";
 import HelpTerminal from "./components/HelpTerminal";
 import Card from "./components/Card";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Education from "./components/Education";
 
 function App() {
   return (
@@ -19,7 +21,9 @@ function App() {
       <Skills/>
       <HelpTerminal/>
       <Card/>
+      <Education/>
       <Contact/>
+      <Footer/>
     </div>
   );
 }

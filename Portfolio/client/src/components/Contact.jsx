@@ -58,8 +58,8 @@ const Contact = () => {
             onClick={item.onClick}
             className="group rounded-2xl bg-white/5 border border-white/10 p-6 h-44
                        flex flex-col items-center justify-center
-                       transition-all duration-300
-                       hover:-translate-y-2 hover:border-white/20
+                       transition-all duration-600
+                       hover:-translate-y-4 hover:border-white/20
                        hover:bg-white/10"
           >
 
