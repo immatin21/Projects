@@ -1,8 +1,18 @@
 import { MongoClient } from "mongodb";
-import clientPromise from "../configs/db";
 
-const client = new MongoClient(process.env.MONGO_URI);
-const dbName = "PassOP";
+let client;
+let clientPromise;
+
+const uri = process.env.MONGO_URI;
+
+if (!uri) {
+  throw new Error("MONGO_URI is not defined");
+}
+
+if (!clientPromise) {
+  client = new MongoClient(uri);
+  clientPromise = client.connect();
+}
 
 export default async function handler(req, res) {
   try {
@@ -25,8 +35,12 @@ export default async function handler(req, res) {
       return res.status(200).json({ success: true });
     }
 
-    res.status(405).json({ message: "Method not allowed" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(405).json({ message: "Method not allowed" });
+  } catch (error) {
+    console.error("API ERROR:", error);
+    return res.status(500).json({
+      error: "Internal Server Error",
+      details: error.message
+    });
   }
 }
