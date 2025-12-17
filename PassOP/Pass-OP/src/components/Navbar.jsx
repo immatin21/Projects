@@ -18,7 +18,7 @@ const Navbar = () => {
         {!isAuthenticated ? (
           <button
             onClick={() => loginWithRedirect({ connection: "github" })}
-            className="flex gap-2 items-center bg-gray-700 hover:bg-gray-900 px-3 py-1 rounded-lg ring-1 ring-white/20"
+            className="flex gap-2 cursor-pointer hover:scale-105 items-center bg-gray-700 hover:bg-gray-900 px-3 py-1 rounded-lg ring-1 ring-white/20"
           >
             <img className="invert" width={20} src="/icons/github.svg" alt="GitHub" />
             <span>Login</span>

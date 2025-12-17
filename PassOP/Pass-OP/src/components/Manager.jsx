@@ -103,18 +103,46 @@ const Manager = () => {
     return <Loading/>;
   }
 
-  if (!isAuthenticated) {
-    return (
-      <div className="flex justify-center mt-20">
+if (!isAuthenticated) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-lg rounded-xl px-10 py-8 max-w-md w-full text-center border border-green-200 -mt-20">
+        <h1 className="text-3xl font-bold mb-3 text-gray-800">
+          Welcome to <span className="text-green-500">PassOP</span>
+        </h1>
+
+        <p className="text-gray-600 mb-6 leading-relaxed">
+          A simple password manager to store and manage your credentials
+          in one place, where your data is private and accessible only to you.
+        </p>
+
+        <div className="flex items-center justify-center mb-6">
+          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-xl font-bold">
+            🔐
+          </div>
+        </div>
+
         <button
           onClick={() => loginWithRedirect({ connection: "github" })}
-          className="bg-black text-white px-4 py-2 rounded"
+          className="w-full cursor-pointer hover:scale-105 bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2"
         >
-          Login with GitHub
+          <img
+            src="/icons/github.svg"
+            alt="GitHub"
+            className="w-5 h-5 invert"
+          />
+          Continue with GitHub
         </button>
+
+        <p className="text-xs text-gray-400 mt-4">
+          Sign in to start using PassOP.
+        </p>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
+
 
   return (
     <div className="min-h-screen flex flex-col">
