@@ -31,6 +31,20 @@ const projects = [
       "Razorpay"
     ],
     liveUrl: "https://getmeachaiproject.vercel.app",
+  },
+  {
+    imageSrc: "/src/Icons/passop.png",
+    name: "PassOP – Password Manager",
+    description:
+      "A full-stack password manager that lets users store and manage credentials after signing in with GitHub. Built with React, MongoDB, and Auth0, featuring a serverless backend, user-specific data handling, and a clean, responsive UI.",
+    techStack: [
+      "React",
+      "Auth0",
+      "MongoDB",
+      "Tailwind CSS",
+      "Vercel"
+    ],
+    liveUrl: "https://passop-olive.vercel.app",
   }
 ];
 
@@ -54,7 +68,7 @@ const Card = () => {
           development and modern UI design.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-10 text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-white">
         {/* Project Cards */}
 
         {projects.map((item, i) => (
