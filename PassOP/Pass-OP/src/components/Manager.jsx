@@ -9,6 +9,7 @@ const Manager = () => {
 
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
+  const [loadingPasswords, setLoadingPasswords] = useState(false);
 
   const ref = useRef(null);
   const passref = useRef(null);
@@ -16,14 +17,22 @@ const Manager = () => {
   const GetPassword = async () => {
     if (!user) return;
 
-    const res = await fetch("/api/server", {
-      headers: {
-        "x-user-id": user.sub,
-      },
-    });
+    setLoadingPasswords(true);
 
-    const data = await res.json();
-    setPasswordArray(data);
+    try {
+      const res = await fetch("/api/server", {
+        headers: {
+          "x-user-id": user.sub,
+        },
+      });
+
+      const data = await res.json();
+      setPasswordArray(data);
+    } catch (err) {
+      toast("Failed to fetch passwords", { theme: "dark" });
+    } finally {
+      setLoadingPasswords(false);
+    }
   };
 
   useEffect(() => {
@@ -100,49 +109,47 @@ const Manager = () => {
   };
 
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   }
 
-if (!isAuthenticated) {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white shadow-lg rounded-xl px-10 py-8 max-w-md w-full text-center border border-green-200 -mt-20">
-        <h1 className="text-3xl font-bold mb-3 text-gray-800">
-          Welcome to <span className="text-green-500">PassOP</span>
-        </h1>
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white shadow-lg rounded-xl px-10 py-8 max-w-md w-full text-center border border-green-200 -mt-20">
+          <h1 className="text-3xl font-bold mb-3 text-gray-800">
+            Welcome to <span className="text-green-500">PassOP</span>
+          </h1>
 
-        <p className="text-gray-600 mb-6 leading-relaxed">
-          A simple password manager to store and manage your credentials
-          in one place, where your data is private and accessible only to you.
-        </p>
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            A simple password manager to store and manage your credentials in
+            one place, where your data is private and accessible only to you.
+          </p>
 
-        <div className="flex items-center justify-center mb-6">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-xl font-bold">
-            🔐
+          <div className="flex items-center justify-center mb-6">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-green-100 text-green-600 text-xl font-bold">
+              🔐
+            </div>
           </div>
+
+          <button
+            onClick={() => loginWithRedirect({ connection: "github" })}
+            className="w-full cursor-pointer hover:scale-105 bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2"
+          >
+            <img
+              src="/icons/github.svg"
+              alt="GitHub"
+              className="w-5 h-5 invert"
+            />
+            Continue with GitHub
+          </button>
+
+          <p className="text-xs text-gray-400 mt-4">
+            Sign in to start using PassOP.
+          </p>
         </div>
-
-        <button
-          onClick={() => loginWithRedirect({ connection: "github" })}
-          className="w-full cursor-pointer hover:scale-105 bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg transition duration-200 flex items-center justify-center gap-2"
-        >
-          <img
-            src="/icons/github.svg"
-            alt="GitHub"
-            className="w-5 h-5 invert"
-          />
-          Continue with GitHub
-        </button>
-
-        <p className="text-xs text-gray-400 mt-4">
-          Sign in to start using PassOP.
-        </p>
       </div>
-    </div>
-  );
-}
-
-
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -211,9 +218,17 @@ if (!isAuthenticated) {
         <div className="passwords">
           <h2 className="font-bold text-2xl py-4">Your Passwords</h2>
 
-          {passwordArray.length === 0 && <div>No password to show</div>}
+          {loadingPasswords && (
+            <div className="flex justify-center items-center py-10">
+              <div className="w-10 h-10 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
 
-          {passwordArray.length > 0 && (
+          {!loadingPasswords && passwordArray.length === 0 && (
+            <div>No password to show</div>
+          )}
+
+          {!loadingPasswords && passwordArray.length > 0 && (
             <div className="overflow-x-auto">
               <table className="table-auto w-full border rounded-md">
                 <thead className="bg-green-800 text-white">
