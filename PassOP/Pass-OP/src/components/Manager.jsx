@@ -36,7 +36,7 @@ const Manager = () => {
   };
 
   const GetPassword = async() => {
-    let req = await fetch ("/api/passwords")
+    let req = await fetch ("/api/server")
     let passwords = await req.json()
     // console.log(passwords)
     setPasswordArray(passwords);
@@ -56,7 +56,7 @@ const Manager = () => {
 
         // if any ID exist in the db, Delete it.
         if (form.id) {
-          await fetch("/api/passwords",{
+          await fetch("/api/server",{
             method:"DELETE", 
             headers: {"content-type" : "application/json"},
             body : JSON.stringify({id : form.id}) 
@@ -64,7 +64,7 @@ const Manager = () => {
         }
 
         // Save to database
-        const response = await fetch("/api/passwords",{
+        const response = await fetch("/api/server",{
           method:"POST", 
           headers: {"content-type" : "application/json"},
           body : JSON.stringify(newPassword)
@@ -115,7 +115,7 @@ const Manager = () => {
       let c = confirm("Do you really want to delete this password?");
       if (c) {
         console.log("Deleting Password with id -", id);
-        const response = await fetch("/api/passwords",{
+        const response = await fetch("/api/server",{
           method:"DELETE", 
           headers: {"content-type" : "application/json"},
           body : JSON.stringify({id}) 
