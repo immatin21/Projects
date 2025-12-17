@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import clientPromise from "./db";
+import clientPromise from "../configs/db";
 
 const client = new MongoClient(process.env.MONGO_URI);
 const dbName = "PassOP";
