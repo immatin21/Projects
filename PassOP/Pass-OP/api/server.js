@@ -20,18 +20,41 @@ export default async function handler(req, res) {
     const db = client.db("PassOP");
     const collection = db.collection("Passwords");
 
+    // 🔐 Get user identity from Auth0 (frontend)
+    const userId = req.headers["x-user-id"];
+
+    if (!userId) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    // ✅ GET: only logged-in user's passwords
     if (req.method === "GET") {
-      const data = await collection.find({}).toArray();
+      const data = await collection
+        .find({ userId })
+        .toArray();
+
       return res.status(200).json(data);
     }
 
+    // ✅ POST: save password for logged-in user
     if (req.method === "POST") {
-      await collection.insertOne(req.body);
+      await collection.insertOne({
+        userId,
+        ...req.body
+      });
+
       return res.status(201).json({ success: true });
     }
 
+    // ✅ DELETE: delete only user's own password
     if (req.method === "DELETE") {
-      await collection.deleteOne(req.body);
+      const { id } = req.body;
+
+      await collection.deleteOne({
+        id,
+        userId
+      });
+
       return res.status(200).json({ success: true });
     }
 
