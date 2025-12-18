@@ -262,7 +262,7 @@ const HeroPage = () => {
           )}
         </div>
 
-        {/* RIGHT SIDE — GIVE HEIGHT TO RING */}
+        {/* RIGHT SIDE */}
         <div className="w-1/2 flex justify-center items-center flex-col">
           <div className="w-[650px] h-[650px] relative ">
             <div className="bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px] absolute inset-0 pointer-events-none "></div>
