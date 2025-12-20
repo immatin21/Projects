@@ -5,7 +5,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section className="flex justify-center w-full relative p-5 py-20">
+    <section id="about" className="flex justify-center w-full relative p-5 py-20">
       <div
         className="container bg-[#121212D9] 
                   flex flex-col lg:flex-row 

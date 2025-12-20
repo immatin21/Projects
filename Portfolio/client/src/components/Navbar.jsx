@@ -1,4 +1,4 @@
-import { MenuIcon, X } from "lucide-react";
+import { Info, MenuIcon, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
 import { motion } from "framer-motion";
@@ -6,6 +6,17 @@ import { motion } from "framer-motion";
 const Navbar = () => {
   const [isScroll, setIsScroll] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToID = (id) => {
+    const element = document.getElementById(id)
+
+    if(!element) return
+
+    element.scrollIntoView({
+      block : "start",
+      behavior : "smooth"
+    })
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +37,7 @@ const Navbar = () => {
     <>
       <div className="text-white">
         <nav
-          className={`flex justify-between items-center py-5 px-12 md:px-24 transition-all duration-300 w-full z-[9999] fixed top-0 ${
+          className={`flex justify-between items-center py-5 px-12 md:px-24 transition-all duration-300 w-full z-9999 fixed top-0 ${
             isScroll
               ? "bg-black/30 to-transparent backdrop-blur-md"
               : "bg-transparent"
@@ -35,6 +46,8 @@ const Navbar = () => {
           <div className="text-2xl md:text-3xl font-bold uppercase">
             <a href="#about">Portfolio</a>
           </div>
+
+          <div className="flex gap-2 md:gap-5">
           <motion.button
             animate={isOpen ? { width: 48, paddingLeft: 0, paddingRight: 0, gap : 0 } : { width: 110, paddingLeft: 12, paddingRight: 12  }}
             transition={{ duration: 0.25 }}
@@ -63,6 +76,10 @@ const Navbar = () => {
               
             </motion.div>
           </motion.button>
+          <button onClick={()=> scrollToID("terminal")} className="hover:text-gray-300 transition duration-100 cursor-pointer">
+            <Info/>
+          </button>
+          </div>
         </nav>
       </div>
       {isOpen && (

@@ -2,11 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const menuItems = [
-  { index: "01", label: "About", link: "#about" },
-  { index: "02", label: "Skills", link: "#skills" },
-  { index: "03", label: "Projects", link: "#projects" },
-  { index: "04", label: "Education", link: "#education" },
-  { index: "05", label: "Contact", link: "#contact" },
+  { index: "01", label: "Home", link: "#home" },
+  { index: "02", label: "About", link: "#about" },
+  { index: "03", label: "Skills", link: "#skills" },
+  { index: "04", label: "Projects", link: "#projects" },
+  { index: "05", label: "Education", link: "#education" },
+  { index: "06", label: "Contact", link: "#contact" },
 ];
 
 const listContainer = {
@@ -33,7 +34,7 @@ const Menu = ({ onClose }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, x: 80 }}
       transition={{ duration: 0.8 }}
-      className=" z-[9999] flex justify-center items-center w-full "
+      className=" z-9999 flex justify-center items-center w-full "
     >
       <motion.ul
         variants={listContainer}
@@ -56,7 +57,7 @@ const Menu = ({ onClose }) => {
               <span className="text-gray-700 group-hover:text-purple-950 text-[20px]">
                 {item.index}
               </span>
-              <span className="text-[60px] text-gray-500 font-bold group-hover:text-white">
+              <span className="text-[48px] md:text-[52px] text-gray-500 font-bold group-hover:text-white">
                 {item.label}
               </span>
             </a>

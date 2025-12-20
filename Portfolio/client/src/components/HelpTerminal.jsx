@@ -96,7 +96,7 @@ const HelpTerminal = () => {
   };
 
   return (
-    <section className="bg-black py-20">
+    <section id="terminal" className="bg-black py-20">
       <div className="mx-auto max-w-4xl w-full">
         <div className="bg-[#0a0a0a] rounded-xl border m-5 border-white/10">
           <div className="bg-[#1a1a1a] rounded-xl px-4 py-3 flex items-center gap-2 border-b border-white/5">
@@ -137,7 +137,7 @@ const HelpTerminal = () => {
               );
             })}
             <form onSubmit={handleSubmit} className="flex items-center ">
-              <span class="text-green-400 mr-2">&gt;</span>
+              <span className="text-green-400 mr-2">&gt;</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -151,8 +151,8 @@ const HelpTerminal = () => {
             </form>
           </div>
 
-          <div class="bg-[#1a1a1a] px-4 py-2 border-t border-white/5">
-            <p class="text-xs text-gray-500">
+          <div className="bg-[#1a1a1a] px-4 py-2 border-t border-white/5">
+            <p className="text-xs text-gray-500">
               💡 Tip: Type "help" and press Enter to see available commands
             </p>
           </div>

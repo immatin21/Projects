@@ -4,7 +4,7 @@ import LightRays from "../Animations/LightRays";
 import AnimatedRings from "../Animations/AnimatedRings";
 import AnimatedName from "../Animations/AnimatedLetters";
 import MagicText from "../Animations/TextType";
-import { ArrowDown, ArrowUpRight, FileText, Paperclip } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Code, Cpu, Database, FileText, Globe, Layers, PanelsTopLeft, Paperclip, Sparkles, Terminal } from "lucide-react";
 const HeroPage = () => {
   const [buffer, setBuffer] = useState(false);
 
@@ -19,7 +19,7 @@ const HeroPage = () => {
   }, []);
 
   return (
-    <div id="about" className="relative bg-black overflow-hidden min-h-screen">
+    <div id="home" className="relative bg-black overflow-hidden min-h-screen pt-25 ">
       {/* Light Rays Background */}
       <div className="absolute inset-0">
         <LightRays
@@ -36,13 +36,18 @@ const HeroPage = () => {
         />
       </div>
 
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-400/30  rounded-full blur-[120px] -translate-x-[20%] -translate-y-[20%]"></div>
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-purple-400/30  blur-[120px] translate-x-[20%] translate-y-[20%]"></div>
+      {/* Glow blobs */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-blue-400/30 rounded-full blur-[120px] -translate-x-[20%] -translate-y-[20%]"></div>
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-400/30 rounded-full blur-[120px] translate-x-[20%] translate-y-[20%]"></div>
 
-      <div className="relative z-50 flex items-center justify-between px-16 min-h-screen">
+      <div className="relative z-50 flex flex-col md:flex-row items-center md:justify-between px-6 md:px-16 md:min-h-screen">
         {/* LEFT SIDE */}
-        <div className="w-1/2 text-white -space-y-6 mb-15">
-          <h1 className="text-[72px] font-medium font-serif">Meet</h1>
+        <div className="w-full md:w-1/2 text-white ">
+        <div className="leading-15">
+          <h1 className="text-[52px] md:text-[72px] font-medium font-serif">
+            Meet
+          </h1>
+
           <AnimatedName
             text="Matin Mondal"
             gradients={[
@@ -50,249 +55,108 @@ const HeroPage = () => {
               { from: "from-cyan-500", to: "to-cyan-800" },
             ]}
           />
+        </div>
 
-          {!buffer ? (
-            " "
-          ) : (
-            <div className="w-[36vw] h-10 pt-6 flex gap-2 flex-col text-gray-400">
-              <MagicText
-                text={[
-                  "Fullstack Web Developer",
-                  "A Programmer",
-                  "Tech Explorer!",
-                ]}
-                className="text-2xl w-full font-medium  "
-                typingSpeed={90}
-                pauseDuration={1800}
-                shiny={true}
-                shinySpeed={3}
-                showCursor={true}
-                loop={true}
-                cursorCharacter="|"
-              />
-              <div>
-                <MagicText
-                  text="I build modern web applications that focus on clean design, solid functionality, and a smooth user experience. Most of my learning comes from hands-on projects, where I enjoy solving problems through code and continuously improving my skills by building and experimenting."
-                  shiny={false}
-                  showCursor={false}
-                  reverseMode={false}
-                  initialDelay={2500}
-                  typingSpeed={30}
-                  mode="continuous"
-                  className="w-full font-normal"
-                />
-              </div>
-              <div className="flex gap-4 items-center px-6 py-2 my-5 rounded-full w-80 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
-                <span className="text-gray-500 text-xs font-bold uppercase">
-                  Skills:
-                </span>
-                {/* icons */}
-                <div className="inline-flex gap-3">
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-code text-purple-400"
-                      aria-hidden="true"
-                    >
-                      <path d="m16 18 6-6-6-6"></path>
-                      <path d="m8 6-6 6 6 6"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-database text-pink-400"
-                      aria-hidden="true"
-                    >
-                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                      <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-                      <path d="M3 12A9 3 0 0 0 21 12"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-panels-top-left text-blue-400"
-                      aria-hidden="true"
-                    >
-                      <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                      <path d="M3 9h18"></path>
-                      <path d="M9 21V9"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-globe text-purple-400"
-                      aria-hidden="true"
-                    >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                      <path d="M2 12h20"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-cpu text-pink-400"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 20v2"></path>
-                      <path d="M12 2v2"></path>
-                      <path d="M17 20v2"></path>
-                      <path d="M17 2v2"></path>
-                      <path d="M2 12h2"></path>
-                      <path d="M2 17h2"></path>
-                      <path d="M2 7h2"></path>
-                      <path d="M20 12h2"></path>
-                      <path d="M20 17h2"></path>
-                      <path d="M20 7h2"></path>
-                      <path d="M7 20v2"></path>
-                      <path d="M7 2v2"></path>
-                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                      <rect x="8" y="8" width="8" height="8" rx="1"></rect>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-layers text-blue-400"
-                      aria-hidden="true"
-                    >
-                      <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path>
-                      <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path>
-                      <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="lucide lucide-terminal text-purple-400"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 19h8"></path>
-                      <path d="m4 17 6-6-6-6"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-4 items-center justify-center px-6 py-2 mb-5 rounded-full w-90 border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm">
-                <span className="text-gray-500 text-xs font-bold uppercase">
-                  Current Position:
-                </span>
-                <span className="flex items-center justify-center text-gray-300 text-sm gap-1">
-                  Open for Opportunities
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-sparkles inline w-3 h-3 text-pink-400 ml-1"
-                    aria-hidden="true"
-                  >
-                    <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
-                    <path d="M20 2v4"></path>
-                    <path d="M22 4h-4"></path>
-                    <circle cx="4" cy="20" r="2"></circle>
-                  </svg>
-                </span>
+          <div className="space-y-4 text-gray-400">
+            <MagicText
+              text={[
+                "Fullstack Web Developer",
+                "A Programmer",
+                "Tech Explorer!",
+              ]}
+              className="text-xl md:text-2xl font-medium"
+              typingSpeed={90}
+              pauseDuration={1800}
+              shiny
+              shinySpeed={3}
+              loop
+            />
+
+            <MagicText
+              text="I build modern web applications that focus on clean design, solid functionality, and a smooth user experience. Most of my learning comes from hands-on projects."
+              shiny={false}
+              showCursor={false}
+              typingSpeed={30}
+              mode="continuous"
+            />
+
+            <div
+              className="flex flex-wrap items-center gap-3 px-4 py-2 rounded-full
+                        border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm
+                        w-fit max-w-md md:mt-5"
+            >
+              <span className="text-gray-500 text-xs font-bold uppercase shrink-0">
+                Skills:
+              </span>
+
+              <div className="flex flex-wrap gap-3">
+                <Code className="w-4 h-4 text-purple-400" />
+                <Database className="w-4 h-4 text-pink-400" />
+                <PanelsTopLeft className="w-4 h-4 text-blue-400" />
+                <Globe className="w-4 h-4 text-purple-400" />
+                <Cpu className="w-4 h-4 text-pink-400" />
+                <Layers className="w-4 h-4 text-blue-400" />
+                <Terminal className="w-4 h-4 text-purple-400" />
               </div>
             </div>
-          )}
+
+            {/* STATUS */}
+            <div
+              className="flex items-center gap-2 px-4 py-2 rounded-full
+                        border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm
+                        w-fit max-w-md"
+            >
+              <span className="text-gray-500 text-xs font-bold uppercase">
+                Current Position:
+              </span>
+
+              <span className="flex items-center gap-1 text-gray-300 text-sm">
+                Open for Opportunities
+                <Sparkles className="w-3 h-3 text-pink-400" />
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-1/2 flex justify-center items-center flex-col">
-          <div className="w-[650px] h-[650px] relative ">
-            <div className="bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px] absolute inset-0 pointer-events-none "></div>
+        <div className="w-full md:w-1/2 flex flex-col items-center mt-12 md:mt-0">
+          <div className="relative w-[320px] h-80 md:w-[650px] md:h-[650px]">
+            <div className="absolute inset-0 bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px]" />
             <AnimatedRings />
           </div>
-          <div className="text-white flex gap-4 w-full max-w-xl">
-            {/* Projects */}
+
+          {/* CTA BUTTONS */}
+          <div className="text-white flex md:flex-row flex-col gap-4 w-full max-w-xl md:mt-6 mb-5">
             <a
               href="#projects"
-              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm cursor-pointer px-8 py-4 rounded-full bg-linear-to-r from-blue-500/50 to-cyan-600"
+              className="flex-1 inline-flex justify-center items-center gap-2
+                     px-6 py-3 rounded-full text-sm font-semibold
+                     bg-linear-to-r from-blue-500/50 to-cyan-600
+                     transition hover:scale-105"
             >
               View my work
               <ArrowUpRight className="w-4 h-4" />
             </a>
 
-            {/* Contact */}
             <a
               href="#contact"
-              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm cursor-pointer px-8 py-4 rounded-full hover:bg-purple-950/10 border border-purple-700"
+              className="flex-1 inline-flex justify-center items-center gap-2
+                     px-6 py-3 rounded-full text-sm font-semibold
+                     border border-purple-700 hover:bg-purple-950/10
+                     transition hover:scale-105"
             >
-              Get in Touch
+              Get in Touch  
               <ArrowDown className="w-4 h-4" />
             </a>
 
-            {/* Resume */}
             <a
-              href="https://drive.google.com/file/d/1aho6aqtxtWcoXGU2FtHWvHTaNTFJ29zk/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1aho6aqtxtWcoXGU2FtHWvHTaNTFJ29zk/view"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 inline-flex justify-center gap-2 items-center transition-all duration-300 hover:scale-110 font-semibold text-sm px-8 py-4 rounded-full bg-black/40 border border-white/10"
+              className="flex-1 inline-flex justify-center items-center gap-2
+                     px-6 py-3 rounded-full text-sm font-semibold
+                     bg-black/40 border border-white/10
+                     transition hover:scale-105"
             >
               Resume
               <FileText className="w-4 h-4" />

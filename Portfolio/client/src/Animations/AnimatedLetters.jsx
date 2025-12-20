@@ -28,7 +28,7 @@ const AnimatedName = ({ text, gradients}) => {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="text-[72px] font-medium leading-tight flex flex-wrap font-serif italic"
+      className="text-[52px] md:text-[72px] font-medium leading-tight flex flex-wrap font-serif italic"
     >
       {words.map((word, wIndex) => (
         <span key={wIndex} className="flex">
