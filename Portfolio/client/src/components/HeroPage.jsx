@@ -57,7 +57,7 @@ const HeroPage = () => {
           />
         </div>
 
-          <div className="space-y-4 text-gray-400">
+          <div className="space-y-4 text-gray-400 flex flex-col">
             <MagicText
               text={[
                 "Fullstack Web Developer",

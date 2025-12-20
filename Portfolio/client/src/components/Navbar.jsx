@@ -44,7 +44,7 @@ const Navbar = () => {
           }`}
         >
           <div className="text-2xl md:text-3xl font-bold uppercase">
-            <a href="#about">Portfolio</a>
+            <a href="#home">Portfolio</a>
           </div>
 
           <div className="flex gap-2 md:gap-5">
