@@ -19,7 +19,7 @@ const HeroPage = () => {
   }, []);
 
   return (
-    <div id="home" className="relative bg-black overflow-hidden min-h-screen pt-25 ">
+    <div id="home" className="relative bg-black overflow-hidden min-h-screen md:pt-0 pt-25 ">
       {/* Light Rays Background */}
       <div className="absolute inset-0">
         <LightRays
@@ -119,50 +119,50 @@ const HeroPage = () => {
         </div>
 
         {/* RIGHT SIDE */}
-        <div className="w-full md:w-1/2 flex flex-col items-center mt-12 md:mt-0">
-          <div className="relative w-[320px] h-80 md:w-[650px] md:h-[650px]">
-            <div className="absolute inset-0 bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px]" />
-            <AnimatedRings />
+          <div className="w-full md:w-1/2 flex flex-col items-center mt-12 md:mt-0">
+            <div className="relative w-[320px] h-80 md:w-[650px] md:h-[650px]">
+              <div className="absolute inset-0 bg-linear-to-r from-[#0FA3B1]/20 to-[#1EC6A7]/20 rounded-full blur-[120px]" />
+              <AnimatedRings />
+            </div>
+
+            {/* CTA BUTTONS */}
+            <div className="text-white flex md:flex-row flex-col gap-4 w-full max-w-xl md:mt-6 mb-5">
+              <a
+                href="#projects"
+                className="flex-1 inline-flex justify-center items-center gap-2
+                      px-6 py-3 rounded-full text-sm font-semibold
+                      bg-linear-to-r from-blue-500/50 to-cyan-600
+                      transition hover:scale-105"
+              >
+                View my work
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="#contact"
+                className="flex-1 inline-flex justify-center items-center gap-2
+                      px-6 py-3 rounded-full text-sm font-semibold
+                      border border-purple-700 hover:bg-purple-950/10
+                      transition hover:scale-105"
+              >
+                Get in Touch  
+                <ArrowDown className="w-4 h-4" />
+              </a>
+
+              <a
+                href="https://drive.google.com/file/d/1aho6aqtxtWcoXGU2FtHWvHTaNTFJ29zk/view"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex justify-center items-center gap-2
+                      px-6 py-3 rounded-full text-sm font-semibold
+                      bg-black/40 border border-white/10
+                      transition hover:scale-105"
+              >
+                Resume
+                <FileText className="w-4 h-4" />
+              </a>
+            </div>
           </div>
-
-          {/* CTA BUTTONS */}
-          <div className="text-white flex md:flex-row flex-col gap-4 w-full max-w-xl md:mt-6 mb-5">
-            <a
-              href="#projects"
-              className="flex-1 inline-flex justify-center items-center gap-2
-                     px-6 py-3 rounded-full text-sm font-semibold
-                     bg-linear-to-r from-blue-500/50 to-cyan-600
-                     transition hover:scale-105"
-            >
-              View my work
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-
-            <a
-              href="#contact"
-              className="flex-1 inline-flex justify-center items-center gap-2
-                     px-6 py-3 rounded-full text-sm font-semibold
-                     border border-purple-700 hover:bg-purple-950/10
-                     transition hover:scale-105"
-            >
-              Get in Touch  
-              <ArrowDown className="w-4 h-4" />
-            </a>
-
-            <a
-              href="https://drive.google.com/file/d/1aho6aqtxtWcoXGU2FtHWvHTaNTFJ29zk/view"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 inline-flex justify-center items-center gap-2
-                     px-6 py-3 rounded-full text-sm font-semibold
-                     bg-black/40 border border-white/10
-                     transition hover:scale-105"
-            >
-              Resume
-              <FileText className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
       </div>
 
       <Navbar />
