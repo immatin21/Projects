@@ -5,21 +5,21 @@ const Contact = () => {
     {
       title: "Email",
       subtitle: "Send Email",
-      src: "/src/Icons/gmail.svg",
+      src: "/Icons/gmail.svg",
       link: "mailto:mondalmatin04@gmail.com",
       text: "text-pink-400"
     },
     {
       title: "WhatsApp",
       subtitle: "Chat on WhatsApp",
-      src: "/src/Icons/whatsapp.svg",
+      src: "/Icons/whatsapp.svg",
       link: "https://wa.me/916354085535",
       text: "text-green-400"
     },
     {
       title: "LinkedIn",
       subtitle: "Connect",
-      src: "/src/Icons/linkedin.svg",
+      src: "/Icons/linkedin.svg",
       link: "https://www.linkedin.com/in/matin-mondal-631575286",
       text: "text-blue-400"
     },
@@ -27,7 +27,7 @@ const Contact = () => {
     {
       title: "Github",
       subtitle: "View Profile",
-      src: "/src/Icons/github.svg",
+      src: "/Icons/github.svg",
       link: "https://github.com/yourusername",
       text: "text-gray-300"
     }

@@ -3,7 +3,7 @@ import React from "react";
 
 const projects = [
   {
-    imageSrc: "/src/Icons/Sign-In Page.png",
+    imageSrc: "/Icons/Sign-In Page.png",
     name: "Ping-up Social Media App",
     description:
       "A modern social networking app that lets users connect with people, share posts and 24-hour stories, and chat in real time using Server-Sent Events, all wrapped in a clean, responsive UI.",
@@ -19,7 +19,7 @@ const projects = [
     liveUrl: "https://ping-up-phi-liard.vercel.app",
   },
   {
-    imageSrc: "/src/Icons/getmeachai.png",
+    imageSrc: "/Icons/getmeachai.png",
     name: "GetMeAChai – Creator Support Platform",
     description:
       "A Patreon-style web platform that lets creators showcase their work and receive one-time or recurring support from their audience, with secure authentication and seamless payment integration.",
@@ -33,7 +33,7 @@ const projects = [
     liveUrl: "https://getmeachaiproject.vercel.app",
   },
   {
-    imageSrc: "/src/Icons/passop.png",
+    imageSrc: "/Icons/passop.png",
     name: "PassOP – Password Manager",
     description:
       "A full-stack password manager that lets users store and manage credentials after signing in with GitHub. Built with React, MongoDB, and Auth0, featuring a serverless backend, user-specific data handling, and a clean, responsive UI.",

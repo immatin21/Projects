@@ -6,22 +6,22 @@ const connectLinks = [
   {
     link: "https://github.com/immatin21",
     title: "Github",
-    icon: "/src/Icons/GreyGithub.svg",
+    icon: "/Icons/GreyGithub.svg",
   },
   {
     link: "https://wa.me/916354085535",
     title: "WhatsApp",
-    icon: "/src/Icons/GreyWhatsapp.svg",
+    icon: "/Icons/GreyWhatsapp.svg",
   },
   {
     link: "https://www.linkedin.com/in/matin-mondal-631575286",
     title: "LinkedIn",
-    icon: "/src/Icons/GreyLinkedin.svg",
+    icon: "/Icons/GreyLinkedin.svg",
   },
   {
     link: "mailto:mondalmatin04@gmail.com",
     title: "Email",
-    icon: "/src/Icons/GreyGmail.svg",
+    icon: "/Icons/GreyGmail.svg",
   },
 ];
 

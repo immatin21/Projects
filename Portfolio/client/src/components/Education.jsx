@@ -6,7 +6,7 @@ const eduDetails = [
   {
     institution: "Maharaja Sayajirao University, Vadodara",
     course: "BCA (Hons.) | Bachelor of Computer Applications (Honours)",
-    src: "/src/Icons/msu.webp",
+    src: "/Icons/msu.webp",
     alt: "MSU logo",
     marks: {
       type: "CGPA",
@@ -19,7 +19,7 @@ const eduDetails = [
   {
     institution: "Aman Day School, Godhra",
     course: "HSC Commerce  - GSHSEB",
-    src: "/src/Icons/ads logo.jpg",
+    src: "/Icons/ads logo.jpg",
     alt: "ads logo",
     marks: {
       type: "Percentage(%)",
@@ -31,7 +31,7 @@ const eduDetails = [
   {
     institution: "Kendriya Vidyalaya, Godhra",
     course: "SSC - CBSE",
-    src: "/src/Icons/kv logo.png",
+    src: "/Icons/kv logo.png",
     alt: "kv logo",
     marks: {
       type: "Percentage(%)",

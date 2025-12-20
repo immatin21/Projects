@@ -4,82 +4,82 @@ import React from "react";
 const frontendSkills = [
   {
     text: "ReactJS",
-    src: "/src/Icons/React.svg",
+    src: "/Icons/React.svg",
   },
   {
     text: "NextJS",
-    src: "/src/Icons/nextjs.png",
+    src: "/Icons/nextjs.png",
   },
   {
     text: "Node JS",
-    src: "/src/Icons/nodejs.svg",
+    src: "/Icons/nodejs.svg",
   },
   {
     text: "Express JS",
-    src: "/src/Icons/express.png",
+    src: "/Icons/express.png",
   },
   {
     text: "Redux",
-    src: "/src/Icons/Redux.svg",
+    src: "/Icons/Redux.svg",
   },
   {
     text: "React Dom",
-    src: "/src/Icons/reactdom.png",
+    src: "/Icons/reactdom.png",
   },
   {
     text: "REST APIs",
-    src: "/src/Icons/restapi.jpg",
+    src: "/Icons/restapi.jpg",
   },
   {
     text: "Tailwind CSS",
-    src: "/src/Icons/Tailwind.webp",
+    src: "/Icons/Tailwind.webp",
   },
   {
     text: "Bootstrap",
-    src: "/src/Icons/bootstrap.png",
+    src: "/Icons/bootstrap.png",
   },
   {
     text: "HTML",
-    src: "/src/Icons/HTML.png",
+    src: "/Icons/HTML.png",
   },
   {
     text: "CSS",
-    src: "/src/Icons/CSS.png",
+    src: "/Icons/CSS.png",
   },
   {
     text: "Javascript",
-    src: "/src/Icons/JS.png",
+    src: "/Icons/JS.png",
   },
 ];
 
 const databaseTools = [
   {
     text: "Mongo DB",
-    src: "/src/Icons/mongodb.svg",
+    src: "/Icons/mongodb.svg",
   },
   {
     text: "MySQL",
-    src: "/src/Icons/mysql.png",
+    src: "/Icons/mysql.png",
   },
   {
     text: "Postman",
-    src: "/src/Icons/postman.svg",
+    src: "/Icons/postman.svg",
   },
   {
     text: "Git",
-    src: "/src/Icons/git.svg",
+    src: "/Icons/git.svg",
   },
   {
     text: "Git Hub",
-    src: "/src/Icons/github.svg",
+    src: "/Icons/github.svg",
   },
   {
     text: "Vercel",
-    src: "/src/Icons/vercel.svg",
+    src: "/Icons/vercel.svg",
   },
   {
     text: "VS Code",
-    src: "/src/Icons/vs.svg",
+    src: "/Icons/vs.svg",
   },
 ];
 
