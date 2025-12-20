@@ -52,7 +52,7 @@ const Card = () => {
   return (
     <div id="projects" className="max-w-6xl mx-auto py-20">
       <div className="flex gap-4 flex-col pb-10">
-        <div className="flex gap-2 text-6xl font-bold text-white justify-center leading-normal">
+        <div className="flex gap-2 text-4xl md:text-6xl font-bold text-white justify-center leading-normal">
           <h1>Featured</h1>
           <GradientText
           className=""
@@ -63,18 +63,18 @@ const Card = () => {
             Projects
           </GradientText>
         </div>
-        <p className="text-lg text-gray-400 font-normal text-center">
+        <p className="text-base md:text-lg text-gray-400 font-normal text-center">
           A collection of recent projects highlighting my journey in full-stack
           development and modern UI design.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-white">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-10 text-white">
         {/* Project Cards */}
 
         {projects.map((item, i) => (
           <div
             key={i}
-            className="group relative rounded-3xl bg-gray-500/10 border border-white/5 overflow-hidden hover:border-purple-500/30 duration-500 transition-transform ease-out hover:-translate-y-2 hover:shadow-xl"
+            className="group relative rounded-3xl m-5 bg-gray-500/10 border border-white/5 overflow-hidden hover:border-purple-500/30 duration-500 transition-transform ease-out hover:-translate-y-2 hover:shadow-xl"
           >
             <div className="relative h-52 sm:h-64 overflow-hidden">
               <div className="absolute inset-0 z-10 opacity-60"></div>

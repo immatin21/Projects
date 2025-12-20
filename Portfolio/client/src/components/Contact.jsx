@@ -40,10 +40,10 @@ const Contact = () => {
     >
 
       <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-bold text-pink-400">
+        <h2 className="text-4xl md:text-6xl font-bold text-pink-400">
           Contact Me
         </h2>
-        <p className="mt-4 text-gray-400 text-sm md:text-base">
+        <p className="mt-4 text-gray-400 text-base">
           Let’s connect and work together
         </p>
       </div>

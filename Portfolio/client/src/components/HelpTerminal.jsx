@@ -98,7 +98,7 @@ const HelpTerminal = () => {
   return (
     <section className="bg-black py-20">
       <div className="mx-auto max-w-4xl w-full">
-        <div className="bg-[#0a0a0a] rounded-xl border border-white/10">
+        <div className="bg-[#0a0a0a] rounded-xl border m-5 border-white/10">
           <div className="bg-[#1a1a1a] rounded-xl px-4 py-3 flex items-center gap-2 border-b border-white/5">
             <div className="flex gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer transition-colors"></div>

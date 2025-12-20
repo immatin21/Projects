@@ -30,7 +30,7 @@ const Footer = () => {
     <section className="bg-black border-t border-white/10 py-12">
       <div className="mx-auto max-w-6xl ">
         {/* Details */}
-        <div className="grid grid-cols-3 pb-5">
+        <div className="grid md:grid-cols-3 md:gap-0 gap-10 md:m-0 m-5 pb-5">
           {/* Col 1 */}
 
           <div className="font-bold text-2xl">
@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Col 2 */}
           <div className="text-white">
-            <h4 className="font-semibold text-lg pl-3">Quick Links</h4>
+            <h4 className="font-semibold text-lg md:pl-3">Quick Links</h4>
 
             <ul className="pt-3">
               <li className="flex justify-start items-center text-gray-400 text-sm group">

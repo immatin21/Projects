@@ -107,7 +107,7 @@ const softSkills = [
 const Skills = () => {
   return (
     <section id="skills" className="flex justify-center w-full relative py-15">
-      <div className="font-bold text-white flex flex-col gap-6 justify-center items-center text-6xl">
+      <div className="font-bold text-white flex flex-col gap-6 justify-center items-center text-4xl md:text-6xl">
         {/* Heading */}
         <div className="inline-flex gap-2">
           <h1>My</h1>
@@ -120,17 +120,17 @@ const Skills = () => {
           </GradientText>
         </div>
 
-        <p className="text-lg text-gray-400 font-normal text-center">
+        <p className="text-base md:text-lg text-gray-400 font-normal text-center">
           Skills I’m developing through hands-on projects and everyday practice.
         </p>
 
         {/* Main Container */}
-        <div className="container flex flex-col items-center justify-center px-10 py-10 my-6">
-          <div className="grid grid-cols-2 gap-10 w-full">
+        <div className="container flex flex-col items-center justify-center px-4 sm:px-6 lg:px-10 py-10 my-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full">
             {/* Card 1 */}
-            <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl  border border-white/10 py-6 pb-6">
-              <div className="inline-flex text-2xl font-medium gap-2 items-center pb-8 p-2 w-fit">
-                <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+            <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 py-6">
+              <div className="inline-flex text-xl sm:text-2xl font-medium gap-2 items-center pb-8 p-2 w-fit">
+                <div className="p-2.5 rounded-xl bg-white/5 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -143,31 +143,38 @@ const Skills = () => {
                     strokeLinejoin="round"
                     className="lucide lucide-code w-6 h-6 text-blue-400"
                   >
-                    <path d="m16 18 6-6-6-6"></path>
-                    <path d="m8 6-6 6 6 6"></path>
+                    {" "}
+                    <path d="m16 18 6-6-6-6"></path>{" "}
+                    <path d="m8 6-6 6 6 6"></path>{" "}
                   </svg>
                 </div>
                 <h1 className="text-white/80">Technical Skills</h1>
               </div>
 
-              <div className="grid grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 w-full px-6">
                 {frontendSkills.map((skill) => (
                   <div
                     key={skill.text}
-                    className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                    className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB]
+                       flex items-center gap-2 justify-center rounded-md"
                   >
-                    <img className="w-5 h-5" src={skill.src} alt={skill.text} />
+                    <img
+                      className="w-5 h-5 shrink-0"
+                      src={skill.src}
+                      alt={skill.text}
+                    />
                     <span className="text-sm">{skill.text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Right side cards */}
             <div className="flex flex-col gap-10">
               {/* Card 2 */}
-              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-8 py-4 pb-6">
-                <div className="inline-flex text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
-                  <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-6 py-6">
+                <div className="inline-flex text-lg sm:text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
+                  <div className="p-2.5 rounded-xl bg-white/5 transition-colors">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -180,22 +187,24 @@ const Skills = () => {
                       strokeLinejoin="round"
                       className="lucide lucide-database w-6 h-6 text-green-400"
                     >
-                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-                      <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
-                      <path d="M3 12A9 3 0 0 0 21 12"></path>
+                      {" "}
+                      <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>{" "}
+                      <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>{" "}
+                      <path d="M3 12A9 3 0 0 0 21 12"></path>{" "}
                     </svg>
                   </div>
                   <h1 className="text-white/80">Database & Tools</h1>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
                   {databaseTools.map((skill) => (
                     <div
                       key={skill.text}
-                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB]
+                         flex items-center gap-2 justify-center rounded-md"
                     >
                       <img
-                        className="w-5 h-5"
+                        className="w-5 h-5 shrink-0"
                         src={skill.src}
                         alt={skill.text}
                       />
@@ -206,9 +215,9 @@ const Skills = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-8 py-4 pb-6">
-                <div className="inline-flex text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
-                  <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+              <div className="bg-[#121213] flex flex-col items-center justify-start text-white rounded-2xl border border-white/10 px-6 py-6">
+                <div className="inline-flex text-lg sm:text-xl font-medium gap-2 items-center pb-5 p-2 w-fit">
+                  <div className="p-2.5 rounded-xl bg-white/5 transition-colors">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -222,22 +231,23 @@ const Skills = () => {
                       class="lucide lucide-users w-6 h-6 text-pink-400"
                       aria-hidden="true"
                     >
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                      <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
+                      {" "}
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>{" "}
+                      <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>{" "}
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>{" "}
+                      <circle cx="9" cy="7" r="4"></circle>{" "}
                     </svg>
                   </div>
                   <h1 className="text-white/80">Soft Skills</h1>
                 </div>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
                   {softSkills.map((skill) => (
                     <div
                       key={skill.text}
-                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB] flex items-center gap-2 justify-center rounded-md"
+                      className="bg-white/5 px-4 py-2 font-medium text-[#D1D5DB]
+                         flex items-center justify-center rounded-md"
                     >
-
                       <span className="text-sm">{skill.text}</span>
                     </div>
                   ))}
