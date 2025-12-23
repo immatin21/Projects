@@ -120,7 +120,7 @@ const Skills = () => {
           </GradientText>
         </div>
 
-        <p className="text-base md:text-lg text-gray-400 font-normal text-center">
+        <p className="text-base md:text-lg text-gray-400 font-normal text-center px-5 md:px-0">
           Skills I’m developing through hands-on projects and everyday practice.
         </p>
 

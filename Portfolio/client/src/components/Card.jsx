@@ -63,7 +63,7 @@ const Card = () => {
             Projects
           </GradientText>
         </div>
-        <p className="text-base md:text-lg text-gray-400 font-normal text-center">
+        <p className="text-base md:text-lg text-gray-400 font-normal text-center px-5 md:px-0">
           A collection of recent projects highlighting my journey in full-stack
           development and modern UI design.
         </p>

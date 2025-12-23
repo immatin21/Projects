@@ -40,7 +40,7 @@ const Contact = () => {
     >
 
       <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-6xl font-bold text-pink-400">
+        <h2 className="text-4xl md:text-6xl font-bold text-[#449cff]">
           Contact Me
         </h2>
         <p className="mt-4 text-gray-400 text-base">

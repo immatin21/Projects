@@ -146,7 +146,7 @@ const HelpTerminal = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type 'help' for commands..."
-                className="flex-1 border-none bg-transparent outline-none"
+                className="flex-1 border-none bg-transparent text-sm outline-none"
               />
             </form>
           </div>

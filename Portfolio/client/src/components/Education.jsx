@@ -54,7 +54,7 @@ const Education = () => {
             Education
           </GradientText>
         </h1>
-        <p className="text-base md:text-lg text-gray-400 font-normal text-center">
+        <p className="text-base md:text-lg text-gray-400 font-normal text-center px-5 md:px-0">
           My education has been a journey of self-discovery and growth. My
           educational details are as follows.
         </p>

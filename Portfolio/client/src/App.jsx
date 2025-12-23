@@ -15,6 +15,7 @@ import Education from "./components/Education";
 function App() {
   return (
     <div className="main-page h-[2000px]">
+      <Loading />
       <HeroPage />
       <About/>
       <Skills/>

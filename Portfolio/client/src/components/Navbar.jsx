@@ -37,7 +37,7 @@ const Navbar = () => {
     <>
       <div className="text-white">
         <nav
-          className={`flex justify-between items-center py-5 px-12 md:px-24 transition-all duration-300 w-full z-9999 fixed top-0 ${
+          className={`flex justify-between items-center py-5 px-6 md:px-24 transition-all duration-300 w-full z-9999 fixed top-0 ${
             isScroll
               ? "bg-black/30 to-transparent backdrop-blur-md"
               : "bg-transparent"

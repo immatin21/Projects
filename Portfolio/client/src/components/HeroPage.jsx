@@ -83,7 +83,7 @@ const HeroPage = () => {
             <div
               className="flex flex-wrap items-center gap-3 px-4 py-2 rounded-full
                         border border-white/10 bg-[#FFFFFF0D] backdrop-blur-sm
-                        w-fit max-w-md md:mt-5"
+                        w-fit max-w-md md:mt-5 "
             >
               <span className="text-gray-500 text-xs font-bold uppercase shrink-0">
                 Skills:
