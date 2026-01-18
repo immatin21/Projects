@@ -13,27 +13,44 @@ const syncUserCreation = inngest.createFunction(
   { id: "sync-user-from-clerk" },
   { event: "clerk/user.created" },
   async ({ event }) => {
-    const { id, first_name, last_name, email_addresses, image_url } =
-      event.data;
-    let username = email_addresses[0]?.email_address.split("@")[0];
+    // Clerk webhook data structure
+    const userData = event.data;
+    
+    const id = userData.id;
+    const first_name = userData.first_name || "";
+    const last_name = userData.last_name || "";
+    const email_addresses = userData.email_addresses || [];
+    const image_url = userData.image_url || userData.profile_image_url || "";
+
+    // Get email and create username
+    const email = email_addresses[0]?.email_address || "";
+    let username = email ? email.split("@")[0] : `user_${Date.now()}`;
 
     // Check if username already exists in the database
-    const user = await User.findOne({ username });
-    if (user) {
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
       username = username + Math.floor(Math.random() * 10000); // Making username unique
     }
-    // Create a new user in the database
 
-    const userData = {
+    // Check if user already exists by ID
+    const existingUserById = await User.findById(id);
+    if (existingUserById) {
+      console.log("User already exists in DB:", id);
+      return { message: "User already exists" };
+    }
+
+    // Create a new user in the database
+    const newUserData = {
       _id: id,
-      email: email_addresses[0]?.email_address,
-      full_name: first_name + " " + last_name,
+      email: email,
+      full_name: `${first_name} ${last_name}`.trim() || "User",
       profile_picture: image_url,
       username,
     };
 
-    let person = await User.create(userData);
+    let person = await User.create(newUserData);
     console.log("User created in DB from Clerk", person);
+    return { message: "User created successfully", userId: id };
   }
 );
 
@@ -43,16 +60,22 @@ const syncUserUpdation = inngest.createFunction(
   { id: "update-user-from-clerk" },
   { event: "clerk/user.updated" },
   async ({ event }) => {
-    const { id, first_name, last_name, email_addresses, image_url } =
-      event.data;
+    const userData = event.data;
+    
+    const id = userData.id;
+    const first_name = userData.first_name || "";
+    const last_name = userData.last_name || "";
+    const email_addresses = userData.email_addresses || [];
+    const image_url = userData.image_url || userData.profile_image_url || "";
 
     const updatedUserData = {
-      email: email_addresses[0]?.email_address,
-      full_name: first_name + " " + last_name,
+      email: email_addresses[0]?.email_address || "",
+      full_name: `${first_name} ${last_name}`.trim() || "User",
       profile_picture: image_url,
     };
 
     await User.findByIdAndUpdate(id, updatedUserData);
+    console.log("User updated in DB from Clerk", id);
   }
 );
 
