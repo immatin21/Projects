@@ -60,11 +60,17 @@ const RecentMessages = () => {
             key={index}
             className="flex items-start gap-2 py-2 hover:bg-slate-100"
           >
-            <img
-              src={message.from_user_id.profile_picture}
-              alt="profilePic"
-              className="h-8 w-8 rounded-full"
-            />
+            {message.from_user_id.profile_picture ? (
+              <img
+                src={message.from_user_id.profile_picture}
+                alt="profilePic"
+                className="h-8 w-8 rounded-full"
+              />
+            ) : (
+              <div className="h-8 w-8 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xs font-semibold">
+                {message.from_user_id.full_name?.charAt(0) || 'U'}
+              </div>
+            )}
             <div className="w-full">
                 <div className="flex justify-between">
                     <p className="font-semibold">{message.from_user_id.full_name}</p>

@@ -40,3 +40,19 @@ const Notification = ({ t, message }) => {
 };
 
 export default Notification;
+
+import PropTypes from "prop-types";
+Notification.propTypes = {
+  t: PropTypes.shape({
+    _id: PropTypes.string.isRequired
+  }).isRequired,
+
+  message: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    from_user_id: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      full_name: PropTypes.string.isRequired,
+      profile_picture: PropTypes.string
+    }).isRequired
+  }).isRequired
+};
