@@ -11,14 +11,20 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendEmail = async (to , subject , body) =>{
-  const response = await transporter.sendMail({
-    from: process.env.SENDER_EMAIL,
-    to,
-    subject,
-    html: body,
-  })
-  return response
+const sendEmail = async ({ to, subject, body }) => {
+  try {
+    const response = await transporter.sendMail({
+      from: process.env.SENDER_EMAIL,
+      to,
+      subject,
+      html: body,
+    });
+    console.log("Email sent successfully to:", to);
+    return response;
+  } catch (error) {
+    console.error("Error sending email:", error.message);
+    throw error;
+  }
 }
 
 export default sendEmail;
