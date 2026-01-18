@@ -54,6 +54,10 @@ export const getFeedPost = async (req, res) => {
         const { userId } = req.auth();
         const user = await User.findById(userId);
 
+        if (!user) {
+            return res.json({ success: false, message: "User not found" });
+        }
+
         // User's connections and followings
 
         const userIds = [userId, ...user.connections, ...user.following];

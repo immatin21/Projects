@@ -1,5 +1,4 @@
 import React from "react";
-import { dummyRecentMessagesData } from "../assets/assets";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
